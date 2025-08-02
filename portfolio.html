@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Rahisisha Tech | Our Success Stories & Case Studies</title>
+    <meta name="description" content="Explore our portfolio of successful AI automation, web development, mobile app, and digital marketing projects. See how we've transformed businesses across Africa.">
+    <meta name="keywords" content="AI automation case studies, web development portfolio Kenya, mobile app projects, digital marketing success stories">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Portfolio - Rahisisha Tech Success Stories">
+    <meta property="og:description" content="Discover our successful projects in AI automation, web development, and digital transformation">
+    <meta property="og:image" content="images/portfolio/ecommerce.jpg">
+    <meta property="og:url" content="https://rahisishatech.com/portfolio">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar sticky" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><h2>Rahisisha<span class="accent">Tech</span></h2></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Portfolio</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Portfolio Hero -->
+    <section class="portfolio-hero">
+        <div class="container">
+            <div class="portfolio-hero-content">
+                <h1>Our <span class="accent">Portfolio</span></h1>
+                <p>Discover how we've helped businesses across Africa transform their operations through innovative technology solutions. Each project represents our commitment to delivering measurable results.</p>
+                <div class="portfolio-stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Successful Projects</p>
+                    </div>
+                    <div class="stat">
+                        <h3>15+</h3>
+                        <p>Industries Served</p>
+                    </div>
+                    <div class="stat">
+                        <h3>300%</h3>
+                        <p>Average ROI Increase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filters -->
+    <section class="portfolio-filters-section">
+        <div class="container">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="app">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ai">AI Automation</button>
+                <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
+                <button class="filter-btn" data-filter="training">AI Training</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Case Study -->
+    <section class="featured-case-study">
+        <div class="container">
+            <div class="case-study-content">
+                <div class="case-study-text">
+                    <div class="case-study-badge">Featured Case Study</div>
+                    <h2>Manufacturing Automation Success</h2>
+                    <p class="case-study-intro">How we helped Kenyan Manufacturing Ltd. reduce processing time by 70% and save $120,000 annually through AI-powered automation.</p>
+                    
+                    <div class="case-study-details">
+                        <div class="detail-item">
+                            <h4>Challenge</h4>
+                            <p>Manual inventory management and quality control processes were causing delays and errors, resulting in significant operational costs.</p>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4>Solution</h4>
+                            <p>Implemented AI-powered inventory tracking system with automated quality control using computer vision and machine learning algorithms.</p>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h4>Results</h4>
+                            <div class="results-grid">
+                                <div class="result">
+                                    <span class="result-number">70%</span>
+                                    <span class="result-label">Time Reduction</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">$120K</span>
+                                    <span class="result-label">Annual Savings</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">95%</span>
+                                    <span class="result-label">Accuracy Improvement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-actions">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Read Full Case Study
+                        </a>
+                        <a href="contact.html" class="btn btn-outline">
+                            <i class="fas fa-comments"></i>
+                            Discuss Your Project
+                        </a>
+                    </div>
+                </div>
+                <div class="case-study-image">
+                    <img src="images/extra photos/conny-schneider-xuTJZ7uD7PI-unsplash.jpg" alt="Manufacturing Automation" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-grid-section">
+        <div class="container">
+            <div class="portfolio-grid">
+                <!-- Project 1: E-commerce Platform -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/ecommerce.jpg" alt="E-commerce Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>E-commerce Platform</h3>
+                                <p>Modern online store with AI-powered product recommendations</p>
+                                <div class="project-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Node.js</span>
+                                    <span class="tag">AI</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="ecommerce">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>AfriShop Online</h4>
+                            <span>E-commerce</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">200% Sales Increase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: AI Chatbot -->
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/chatbot.jpg" alt="AI Chatbot" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Intelligent Customer Support Bot</h3>
+                                <p>24/7 multilingual customer support automation</p>
+                                <div class="project-tags">
+                                    <span class="tag">NLP</span>
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">API</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="chatbot">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Try Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>TelecomCorp Kenya</h4>
+                            <span>Telecommunications</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">80% Query Resolution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Marketing Campaign -->
+                <div class="portfolio-item" data-category="marketing">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/marketing.jpg" alt="Digital Marketing Campaign" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Digital Marketing Campaign</h3>
+                                <p>Multi-channel marketing strategy with 400% ROI</p>
+                                <div class="project-tags">
+                                    <span class="tag">SEO</span>
+                                    <span class="tag">Social Media</span>
+                                    <span class="tag">PPC</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="marketing">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-chart-line"></i>
+                                        View Results
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>FinTech Solutions</h4>
+                            <span>Financial Services</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">400% ROI Increase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Mobile App -->
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/product-demo.jpg" alt="Mobile App" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Healthcare Management App</h3>
+                                <p>Cross-platform app for patient management and telemedicine</p>
+                                <div class="project-tags">
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Healthcare</span>
+                                    <span class="tag">Telemedicine</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="healthcare-app">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fab fa-app-store"></i>
+                                        App Store
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>MediCare Plus</h4>
+                            <span>Healthcare</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">50K+ Downloads</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Corporate Website -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/brand-identity.jpg" alt="Corporate Website" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Corporate Website Redesign</h3>
+                                <p>Complete brand identity and web presence overhaul</p>
+                                <div class="project-tags">
+                                    <span class="tag">WordPress</span>
+                                    <span class="tag">SEO</span>
+                                    <span class="tag">Branding</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="corporate-website">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Visit Site
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>Construction Corp</h4>
+                            <span>Construction</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">300% Traffic Increase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: AI Analytics Dashboard -->
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio/blog-series.jpg" alt="AI Analytics Dashboard" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>AI Analytics Dashboard</h3>
+                                <p>Real-time business intelligence and predictive analytics</p>
+                                <div class="project-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">Dashboard</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="analytics-dashboard">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>Retail Chain Kenya</h4>
+                            <span>Retail</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">60% Better Decisions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Projects -->
+                <div class="portfolio-item" data-category="training">
+                    <div class="portfolio-image">
+                        <img src="images/extra photos/hugo-barbosa-TnG2q8FtXsg-unsplash.jpg" alt="AI Training Program" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Corporate AI Training Program</h3>
+                                <p>Comprehensive AI literacy program for 200+ employees</p>
+                                <div class="project-tags">
+                                    <span class="tag">Training</span>
+                                    <span class="tag">AI Education</span>
+                                    <span class="tag">Corporate</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="ai-training">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        Training Materials
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>Banking Corp</h4>
+                            <span>Financial Services</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">200+ Employees Trained</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-image">
+                        <img src="images/extra photos/blake-wisz-Xn5FbEM9564-unsplash.jpg" alt="Logistics App" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Logistics Management App</h3>
+                                <p>Fleet tracking and route optimization mobile application</p>
+                                <div class="project-tags">
+                                    <span class="tag">Flutter</span>
+                                    <span class="tag">GPS</span>
+                                    <span class="tag">Logistics</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="logistics-app">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-truck"></i>
+                                        Track Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>LogiTrans Africa</h4>
+                            <span>Logistics</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">40% Route Efficiency</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="images/extra photos/uriel-soberanes-MxVkWPiJALs-unsplash.jpg" alt="Educational Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Online Learning Platform</h3>
+                                <p>Comprehensive e-learning solution with AI-powered personalization</p>
+                                <div class="project-tags">
+                                    <span class="tag">Vue.js</span>
+                                    <span class="tag">Education</span>
+                                    <span class="tag">AI Personalization</span>
+                                </div>
+                                <div class="portfolio-links">
+                                    <a href="#" class="portfolio-link" data-project="learning-platform">
+                                        <i class="fas fa-eye"></i>
+                                        View Details
+                                    </a>
+                                    <a href="#" class="portfolio-link">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        Try Platform
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-meta">
+                        <div class="client-info">
+                            <h4>EduTech Kenya</h4>
+                            <span>Education</span>
+                        </div>
+                        <div class="project-results">
+                            <span class="result">10K+ Students</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-section">
+                <button class="btn btn-outline" id="load-more-portfolio">
+                    <i class="fas fa-plus"></i>
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="portfolio-testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our <span class="accent">Clients Say</span></h2>
+                <p>Real feedback from businesses we've transformed</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The AI automation solution from Rahisisha Tech transformed our manufacturing process. We've seen a 70% reduction in processing time and significant cost savings."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/nathan-dumlao-lvWw_G8tKsk-unsplash.jpg" alt="Client" loading="lazy">
+                            <div class="author-info">
+                                <h4>James Kiprotich</h4>
+                                <span>CEO, Kenyan Manufacturing Ltd.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Our e-commerce platform built by Rahisisha Tech has exceeded all expectations. Sales increased by 200% within the first quarter of launch."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg" alt="Client" loading="lazy">
+                            <div class="author-info">
+                                <h4>Mary Wanjiku</h4>
+                                <span>Founder, AfriShop Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The digital marketing campaign delivered exceptional results. We achieved a 400% ROI and significantly improved our brand visibility across East Africa."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/minh-pham-AHCmAX0k_J4-unsplash.jpg" alt="Client" loading="lazy">
+                            <div class="author-info">
+                                <h4>David Omondi</h4>
+                                <span>Marketing Director, FinTech Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="portfolio-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Join Our Success Stories?</h2>
+                <p>Let's discuss how we can help transform your business with innovative technology solutions tailored to your specific needs.</p>
+                <div class="cta-buttons">
+                    <a href="quote.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Start Your Project
+                    </a>
+                    <a href="contact.html" class="btn btn-outline">
+                        <i class="fas fa-calendar"></i>
+                        Schedule Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rahisisha<span class="accent">Tech</span></h3>
+                    <p>Transforming businesses through innovative AI solutions and cutting-edge technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#web-design">Web Development</a></li>
+                        <li><a href="services.html#app-development">Mobile Apps</a></li>
+                        <li><a href="services.html#ai-automation">AI Automation</a></li>
+                        <li><a href="services.html#digital-marketing">Digital Marketing</a></li>
+                        <li><a href="services.html#ai-training">AI Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="quote.html">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest insights and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rahisisha Tech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/1234567890" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content project-modal-content">
+            <span class="close">&times;</span>
+            <div id="project-details">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>

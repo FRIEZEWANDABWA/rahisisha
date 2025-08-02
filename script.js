@@ -156,13 +156,21 @@ function initNavigation() {
         });
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect - Always visible
+    let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Always keep navbar visible
+        navbar.classList.add('sticky');
+        
+        if (scrollTop > 100) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 
     // Active link highlighting

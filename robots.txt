@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rahisishatech.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.pdf$
+
+# Allow important pages
+Allow: /index.html
+Allow: /services.html
+Allow: /about.html
+Allow: /portfolio.html
+Allow: /blog.html
+Allow: /contact.html
+Allow: /quote.html
+
+# Crawl delay (optional)
+Crawl-delay: 1
