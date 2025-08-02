@@ -20,11 +20,17 @@ function initializeWebsite() {
     initScrollEffects();
     initLanguageSwitcher();
     initNewsletterForm();
+    initThemeToggle();
     
-    // Show cookie consent after 2 seconds
+    // Show AI welcome popup after 3 seconds
+    setTimeout(() => {
+        showAIWelcome();
+    }, 3000);
+    
+    // Show cookie consent after 5 seconds
     setTimeout(() => {
         showCookieConsent();
-    }, 2000);
+    }, 5000);
 }
 
 // Particles.js Configuration
@@ -332,6 +338,18 @@ function initPortfolioFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
+    // Set default filter to 'web' on page load
+    const defaultFilter = 'web';
+    portfolioItems.forEach(item => {
+        if (item.getAttribute('data-category') === defaultFilter) {
+            item.style.display = 'block';
+            gsap.set(item, { opacity: 1, scale: 1 });
+        } else {
+            item.style.display = 'none';
+            gsap.set(item, { opacity: 0, scale: 0.8 });
+        }
+    });
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Remove active class from all buttons
@@ -343,13 +361,13 @@ function initPortfolioFilter() {
 
             portfolioItems.forEach(item => {
                 if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'block';
                     gsap.to(item, {
                         opacity: 1,
                         scale: 1,
                         duration: 0.5,
                         ease: 'power2.out'
                     });
-                    item.style.display = 'block';
                 } else {
                     gsap.to(item, {
                         opacity: 0,
@@ -649,16 +667,24 @@ function addMessage(message, sender) {
 
 function getBotResponse(message) {
     const responses = {
-        'hello': 'Hi there! How can I help you today?',
-        'hi': 'Hello! What can I do for you?',
-        'services': 'We offer web development, mobile apps, AI automation, digital marketing, and AI training. Which service interests you?',
-        'pricing': 'Our pricing varies based on project requirements. Would you like to schedule a free consultation to discuss your needs?',
-        'contact': 'You can reach us at hello@rahisishatech.com or call +1 (555) 123-4567. We\'re here 24/7!',
-        'about': 'Rahisisha Tech is a forward-thinking technology company that simplifies business operations through AI solutions and modern development.',
-        'portfolio': 'Check out our portfolio section to see our latest projects and success stories!',
+        'hello': 'Hi there! I\'m Rahisisha AI. How can I help you today?',
+        'hi': 'Hello! I\'m here to assist you with our services. What would you like to know?',
+        'services': 'We offer 5 core services: 1) Website Design & Development 2) Mobile & Web Apps 3) AI Automation Solutions 4) Digital Marketing 5) AI Training. Which interests you most?',
+        'web': 'Our web development services include responsive design, SEO optimization, and modern frameworks. Starting from $2,500. Would you like a quote?',
+        'mobile': 'We build cross-platform mobile apps using React Native and Flutter. Starting from $5,000. Interested in learning more?',
+        'ai': 'Our AI automation solutions can reduce manual tasks by 70% and boost productivity by 300%. Starting from $3,500. Want to see how?',
+        'marketing': 'Our digital marketing services typically deliver 300% ROI increase. Starting from $1,500/month. Ready to grow your business?',
+        'training': 'We offer AI training workshops from 1-3 days. Starting from $2,000. Perfect for teams wanting to leverage AI tools.',
+        'pricing': 'Our pricing varies by service: Web ($2,500+), Mobile Apps ($5,000+), AI Automation ($3,500+), Marketing ($1,500/month), Training ($2,000+). Need a custom quote?',
+        'contact': 'You can reach us at hello@rahisishatech.com, call +254111546120, or WhatsApp us directly. We\'re here 24/7!',
+        'whatsapp': 'Click the WhatsApp button to chat with us directly at +254111546120!',
+        'about': 'Rahisisha Tech was founded in 2024 in Kenya. We\'ve completed 125+ projects and helped businesses across 5+ countries. We make AI accessible for African businesses.',
+        'portfolio': 'Check out our portfolio section to see our latest projects and success stories! We\'ve helped 500+ businesses transform digitally.',
         'demo': 'I\'d be happy to help you schedule a demo! Click the "Book Demo" button to get started.',
         'quote': 'Ready for a quote? Click the "Get Free Quote" button and we\'ll provide a custom estimate for your project.',
-        'default': 'I\'m here to help! You can ask me about our services, pricing, portfolio, or anything else. Try asking about "services" or "contact".'
+        'team': 'Our team includes 15+ experts led by Founder Frieze Wandabwa, CTO Teddy Githiji, and other specialists in AI, design, and marketing.',
+        'location': 'We\'re based in Kenya but serve clients across Africa and globally. We understand local challenges with international quality standards.',
+        'default': 'I\'m Rahisisha AI, here to help with our services! Ask me about: "services", "pricing", "contact", "demo", or "quote". What interests you?'
     };
     
     const lowerMessage = message.toLowerCase();
@@ -977,6 +1003,62 @@ window.addEventListener('unhandledrejection', (e) => {
     // In production, you might want to send this to an error tracking service
 });
 
+// Theme Toggle
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Set initial theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            showNotification(`Switched to ${newTheme} mode`, 'info');
+        });
+    }
+}
+
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    }
+}
+
+// AI Welcome Popup
+function showAIWelcome() {
+    const aiWelcome = document.getElementById('ai-welcome');
+    if (aiWelcome && !localStorage.getItem('aiWelcomeShown')) {
+        aiWelcome.classList.add('show');
+        
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+            closeAIWelcome();
+        }, 5000);
+    }
+}
+
+function closeAIWelcome() {
+    const aiWelcome = document.getElementById('ai-welcome');
+    if (aiWelcome) {
+        aiWelcome.classList.remove('show');
+        localStorage.setItem('aiWelcomeShown', 'true');
+    }
+}
+
 // Export functions for global access
 window.openQuoteModal = openQuoteModal;
 window.openDemoModal = openDemoModal;
@@ -984,3 +1066,4 @@ window.toggleChatbot = toggleChatbot;
 window.sendMessage = sendMessage;
 window.acceptCookies = acceptCookies;
 window.declineCookies = declineCookies;
+window.closeAIWelcome = closeAIWelcome;

@@ -34,6 +34,9 @@
                 <a href="portfolio.html" class="nav-link">Portfolio</a>
                 <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link">Contact</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
                 <div class="language-switcher">
                     <select id="language-select">
                         <option value="en">EN</option>
@@ -234,8 +237,8 @@
             </div>
             
             <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="all">All</button>
+                <button class="filter-btn active" data-filter="web">Web Design</button>
                 <button class="filter-btn" data-filter="app">Mobile Apps</button>
                 <button class="filter-btn" data-filter="ai">AI Solutions</button>
                 <button class="filter-btn" data-filter="marketing">Marketing</button>
@@ -405,7 +408,9 @@
             
             <div class="blog-grid">
                 <article class="blog-card featured">
-                    <img src="images/extra photos/carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="AI Trends 2024">
+                    <div class="blog-image">
+                        <img src="images/extra photos/carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="AI Trends 2024">
+                    </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span class="blog-category">AI Trends</span>
@@ -418,7 +423,9 @@
                 </article>
 
                 <article class="blog-card">
-                    <img src="images/extra photos/chris-ried-ieic5Tq8YMk-unsplash.jpg" alt="Web Development">
+                    <div class="blog-image">
+                        <img src="images/extra photos/chris-ried-ieic5Tq8YMk-unsplash.jpg" alt="Web Development">
+                    </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span class="blog-category">Development</span>
@@ -431,7 +438,9 @@
                 </article>
 
                 <article class="blog-card">
-                    <img src="images/extra photos/joshua-sortino-LqKhnDzSF-8-unsplash.jpg" alt="Digital Marketing">
+                    <div class="blog-image">
+                        <img src="images/extra photos/joshua-sortino-LqKhnDzSF-8-unsplash.jpg" alt="Digital Marketing">
+                    </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span class="blog-category">Marketing</span>
@@ -588,7 +597,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 Rahisisha Tech. All rights reserved.</p>
+                <p>&copy; 2024 Rahisisha Tech. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -722,7 +731,7 @@
 
     <!-- Floating Elements -->
     <div class="floating-whatsapp">
-        <a href="https://wa.me/1234567890" target="_blank">
+        <a href="https://wa.me/254111546120" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -741,14 +750,14 @@
     <!-- AI Chatbot -->
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
-            <h4>AI Assistant</h4>
+            <h4>Rahisisha AI Assistant</h4>
             <button class="chatbot-toggle" onclick="toggleChatbot()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <div class="message bot-message">
-                <p>Hi! I'm your AI assistant. How can I help you today?</p>
+                <p>Hi, I am Rahisisha AI. How can I help you today?</p>
             </div>
         </div>
         <div class="chatbot-input">
@@ -761,6 +770,21 @@
 
     <div class="chatbot-trigger" onclick="toggleChatbot()">
         <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Welcome Popup -->
+    <div id="ai-welcome" class="ai-welcome">
+        <div class="ai-welcome-content">
+            <div class="ai-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="ai-message">
+                <p>Hi, I am Rahisisha AI. How can I help you today?</p>
+            </div>
+            <button class="ai-close" onclick="closeAIWelcome()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
 
     <!-- Scripts -->
