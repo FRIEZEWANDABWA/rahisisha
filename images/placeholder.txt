@@ -1,0 +1,42 @@
+# Image Placeholders for SmartSpark Services
+
+## Recommended Images to Add:
+
+### Hero Section:
+- hero-bg.jpg (1920x1080) - Modern office with diverse team working on laptops
+- ai-creativity.jpg (800x600) - Abstract image showing AI and human creativity
+
+### About Section:
+- global-team.jpg (600x400) - World map with connection points
+- african-talent.jpg (600x400) - Professional African team members
+- ai-integration.jpg (600x400) - AI/tech visualization
+
+### Services Section:
+- virtual-assistant.jpg (400x300) - Person working on computer
+- writing-service.jpg (400x300) - Writer at desk with laptop
+- web-design.jpg (400x300) - Designer working on website mockups
+- video-editing.jpg (400x300) - Video editing software interface
+- ai-services.jpg (400x300) - AI/data visualization
+
+### Portfolio Section:
+- portfolio-1.jpg (300x200) - Blog article screenshot
+- portfolio-2.jpg (300x200) - Brand design mockup
+- portfolio-3.jpg (300x200) - Video editing timeline
+- portfolio-4.jpg (300x200) - AI chatbot interface
+
+### Team Section:
+- team-member-1.jpg (200x200) - Professional headshot
+- team-member-2.jpg (200x200) - Professional headshot
+- team-member-3.jpg (200x200) - Professional headshot
+
+### Testimonials:
+- client-1.jpg (100x100) - Client photo
+- client-2.jpg (100x100) - Client photo
+- client-3.jpg (100x100) - Client photo
+
+You can use free stock photos from:
+- Unsplash.com
+- Pexels.com
+- Pixabay.com
+
+Search terms: "african professionals", "remote work", "AI technology", "creative team", "global business"

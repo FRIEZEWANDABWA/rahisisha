@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Rahisisha Tech | Latest Tech Insights & AI Trends</title>
+    <meta name="description" content="Stay updated with the latest technology trends, AI insights, and digital transformation tips from Rahisisha Tech experts.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><h2>Rahisisha<span class="accent">Tech</span></h2></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <div class="language-switcher">
+                    <select id="language-select">
+                        <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <h1>Tech <span class="accent">Insights</span> & Trends</h1>
+                <p>Discover the latest in AI, web development, digital marketing, and technology innovation from our expert team.</p>
+                <div class="blog-search">
+                    <input type="text" placeholder="Search articles..." id="blog-search">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="container">
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">All Articles</button>
+                <button class="category-btn" data-category="ai">AI & Automation</button>
+                <button class="category-btn" data-category="development">Web Development</button>
+                <button class="category-btn" data-category="marketing">Digital Marketing</button>
+                <button class="category-btn" data-category="trends">Tech Trends</button>
+                <button class="category-btn" data-category="tutorials">Tutorials</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="featured-article">
+        <div class="container">
+            <div class="featured-content">
+                <div class="featured-image">
+                    <img src="images/extra photos/carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="AI Future">
+                    <div class="featured-badge">Featured</div>
+                </div>
+                <div class="featured-text">
+                    <div class="article-meta">
+                        <span class="category">AI Trends</span>
+                        <span class="date">December 15, 2023</span>
+                        <span class="read-time">8 min read</span>
+                    </div>
+                    <h2>The Future of AI in Business Automation: What Every CEO Should Know</h2>
+                    <p>Artificial Intelligence is no longer a futuristic concept—it's reshaping how businesses operate today. From automating routine tasks to providing predictive insights, AI is becoming the backbone of modern enterprise operations.</p>
+                    <div class="article-author">
+                        <img src="images/extra photos/nathan-dumlao-lvWw_G8tKsk-unsplash.jpg" alt="Author">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <span>AI Strategy Consultant</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Read Full Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-articles-grid">
+                <!-- Article 1 -->
+                <article class="blog-article" data-category="development">
+                    <div class="article-image">
+                        <img src="images/extra photos/chris-ried-ieic5Tq8YMk-unsplash.jpg" alt="Web Development">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">Development</span>
+                            <span class="date">Dec 12, 2023</span>
+                            <span class="read-time">5 min read</span>
+                        </div>
+                        <h3>Modern Web Development Best Practices for 2024</h3>
+                        <p>Explore the latest techniques, frameworks, and methodologies that are shaping the future of web development.</p>
+                        <div class="article-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Performance</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/minh-pham-AHCmAX0k_J4-unsplash.jpg" alt="Author">
+                                <span>Michael Chen</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 1.2k</span>
+                                <span><i class="fas fa-heart"></i> 89</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-article" data-category="marketing">
+                    <div class="article-image">
+                        <img src="images/extra photos/joshua-sortino-LqKhnDzSF-8-unsplash.jpg" alt="Digital Marketing">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">Marketing</span>
+                            <span class="date">Dec 10, 2023</span>
+                            <span class="read-time">7 min read</span>
+                        </div>
+                        <h3>AI-Powered Marketing: Revolutionizing Customer Engagement</h3>
+                        <p>Learn how artificial intelligence is transforming digital marketing strategies and improving ROI.</p>
+                        <div class="article-tags">
+                            <span class="tag">AI Marketing</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">ROI</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg" alt="Author">
+                                <span>Emma Rodriguez</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 2.1k</span>
+                                <span><i class="fas fa-heart"></i> 156</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-article" data-category="ai">
+                    <div class="article-image">
+                        <img src="images/extra photos/maximalfocus-VT4rx775FT4-unsplash.jpg" alt="Machine Learning">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">AI & Automation</span>
+                            <span class="date">Dec 8, 2023</span>
+                            <span class="read-time">6 min read</span>
+                        </div>
+                        <h3>Machine Learning for Small Businesses: A Practical Guide</h3>
+                        <p>Discover how small and medium businesses can leverage machine learning without breaking the bank.</p>
+                        <div class="article-tags">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">SMB</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/rafael-pol-6b5uqlWabB0-unsplash.jpg" alt="Author">
+                                <span>David Kim</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 890</span>
+                                <span><i class="fas fa-heart"></i> 67</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-article" data-category="tutorials">
+                    <div class="article-image">
+                        <img src="images/extra photos/conny-schneider-xuTJZ7uD7PI-unsplash.jpg" alt="Tutorial">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">Tutorials</span>
+                            <span class="date">Dec 5, 2023</span>
+                            <span class="read-time">12 min read</span>
+                        </div>
+                        <h3>Building Your First Chatbot: Step-by-Step Tutorial</h3>
+                        <p>A comprehensive guide to creating an intelligent chatbot for your business using modern AI tools.</p>
+                        <div class="article-tags">
+                            <span class="tag">Chatbot</span>
+                            <span class="tag">Tutorial</span>
+                            <span class="tag">AI</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/lorenzo-herrera-p0j-mE6mGo4-unsplash.jpg" alt="Author">
+                                <span>Alex Thompson</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 3.4k</span>
+                                <span><i class="fas fa-heart"></i> 234</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-article" data-category="trends">
+                    <div class="article-image">
+                        <img src="images/extra photos/nasa-Q1p7bh3SHj8-unsplash.jpg" alt="Tech Trends">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">Tech Trends</span>
+                            <span class="date">Dec 3, 2023</span>
+                            <span class="read-time">4 min read</span>
+                        </div>
+                        <h3>Top 10 Technology Trends to Watch in 2024</h3>
+                        <p>Stay ahead of the curve with these emerging technologies that will shape the business landscape.</p>
+                        <div class="article-tags">
+                            <span class="tag">Trends</span>
+                            <span class="tag">Innovation</span>
+                            <span class="tag">Future</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/thisisengineering-sbVu5zitZt0-unsplash.jpg" alt="Author">
+                                <span>Lisa Wang</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 1.8k</span>
+                                <span><i class="fas fa-heart"></i> 142</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-article" data-category="development">
+                    <div class="article-image">
+                        <img src="images/extra photos/rodion-kutsaiev-0VGG7cqTwCo-unsplash.jpg" alt="Mobile Development">
+                        <div class="article-overlay">
+                            <a href="#" class="read-article-btn">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span class="category">Development</span>
+                            <span class="date">Nov 30, 2023</span>
+                            <span class="read-time">9 min read</span>
+                        </div>
+                        <h3>Cross-Platform Mobile Development: React Native vs Flutter</h3>
+                        <p>Compare the two leading cross-platform frameworks and choose the right one for your project.</p>
+                        <div class="article-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Mobile</span>
+                        </div>
+                        <div class="article-footer">
+                            <div class="author-mini">
+                                <img src="images/extra photos/jeffery-ho-oITfawv6t-8-unsplash.jpg" alt="Author">
+                                <span>James Wilson</span>
+                            </div>
+                            <div class="article-stats">
+                                <span><i class="fas fa-eye"></i> 2.7k</span>
+                                <span><i class="fas fa-heart"></i> 198</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-section">
+                <button class="btn btn-outline" id="load-more-btn">
+                    <i class="fas fa-plus"></i>
+                    Load More Articles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-signup">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Stay Updated with <span class="accent">Tech Insights</span></h2>
+                    <p>Get the latest articles, tutorials, and industry insights delivered straight to your inbox.</p>
+                </div>
+                <form class="newsletter-form-large">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Subscribe Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rahisisha<span class="accent">Tech</span></h3>
+                    <p>Transforming businesses through innovative AI solutions and cutting-edge technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#services">Web Development</a></li>
+                        <li><a href="index.html#services">Mobile Apps</a></li>
+                        <li><a href="index.html#services">AI Automation</a></li>
+                        <li><a href="index.html#services">Digital Marketing</a></li>
+                        <li><a href="index.html#services">AI Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="quote.html">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest insights and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rahisisha Tech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Elements -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/1234567890" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>

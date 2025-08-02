@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahisisha Tech - Revolutionizing Business Through AI Innovation</title>
+    <meta name="description" content="Transform your business with AI-powered solutions. Web development, mobile apps, AI automation, digital marketing, and AI training services.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Particles.js for animated background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Rahisisha<span class="accent">Tech</span></h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <div class="language-switcher">
+                    <select id="language-select">
+                        <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="line">Revolutionizing</span>
+                    <span class="line accent">Business Through</span>
+                    <span class="line">AI Innovation</span>
+                </h1>
+                <p class="hero-subtitle">Transform your company's workflow with cutting-edge AI solutions, modern web development, and intelligent automation that drives real results.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="openQuoteModal()">
+                        <i class="fas fa-rocket"></i>
+                        Get Free Quote
+                    </button>
+                    <button class="btn btn-secondary" onclick="openDemoModal()">
+                        <i class="fas fa-play"></i>
+                        Book Demo
+                    </button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat">
+                    <h3>24/7</h3>
+                    <p>Support Available</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="accent">Services</span></h2>
+                <p>Comprehensive tech solutions tailored to accelerate your business growth</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="web-design">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Website Design & Development</h3>
+                    <p>Modern, responsive websites that convert visitors into customers with stunning UI/UX design.</p>
+                    <ul class="service-features">
+                        <li>Responsive Design</li>
+                        <li>SEO Optimization</li>
+                        <li>Performance Focused</li>
+                        <li>CMS Integration</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+
+                <div class="service-card" data-service="app-development">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile & Web App Development</h3>
+                    <p>Cross-platform applications that deliver exceptional user experiences across all devices.</p>
+                    <ul class="service-features">
+                        <li>iOS & Android</li>
+                        <li>React Native</li>
+                        <li>Progressive Web Apps</li>
+                        <li>API Integration</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+
+                <div class="service-card featured" data-service="ai-automation">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Automation Solutions</h3>
+                    <p>Intelligent automation that streamlines workflows and eliminates repetitive tasks.</p>
+                    <ul class="service-features">
+                        <li>Process Automation</li>
+                        <li>Chatbot Development</li>
+                        <li>Data Analysis</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+
+                <div class="service-card" data-service="digital-marketing">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Digital Marketing & Strategy</h3>
+                    <p>Data-driven marketing campaigns that maximize ROI and accelerate business growth.</p>
+                    <ul class="service-features">
+                        <li>SEO & SEM</li>
+                        <li>Social Media Marketing</li>
+                        <li>Content Strategy</li>
+                        <li>Analytics & Reporting</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+
+                <div class="service-card" data-service="ai-training">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>AI Tools Training & Workshops</h3>
+                    <p>Comprehensive training programs to empower your team with AI knowledge and skills.</p>
+                    <ul class="service-features">
+                        <li>Custom Workshops</li>
+                        <li>Hands-on Training</li>
+                        <li>Certification Programs</li>
+                        <li>Ongoing Support</li>
+                    </ul>
+                    <button class="service-btn">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About <span class="accent">Rahisisha Tech</span></h2>
+                    <p class="about-intro">We're a forward-thinking technology company dedicated to simplifying business operations through innovative AI solutions and cutting-edge development practices.</p>
+                    
+                    <div class="mission-vision">
+                        <div class="mission">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To democratize AI technology and make it accessible to businesses of all sizes, enabling them to compete in the digital age.</p>
+                        </div>
+                        <div class="vision">
+                            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                            <p>To be the leading catalyst for business transformation through intelligent technology solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="values">
+                        <h3>Our Core Values</h3>
+                        <div class="values-grid">
+                            <div class="value">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Innovation</span>
+                            </div>
+                            <div class="value">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Reliability</span>
+                            </div>
+                            <div class="value">
+                                <i class="fas fa-handshake"></i>
+                                <span>Integrity</span>
+                            </div>
+                            <div class="value">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Impact</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/extra photos/thisisengineering-sbVu5zitZt0-unsplash.jpg" alt="Our Team" class="team-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="accent">Portfolio</span></h2>
+                <p>Showcasing our latest projects and success stories</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ai">AI Solutions</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="images/portfolio/ecommerce.jpg" alt="E-commerce Platform">
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Platform</h3>
+                        <p>Modern online store with AI-powered recommendations</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <img src="images/portfolio/chatbot.jpg" alt="AI Chatbot">
+                    <div class="portfolio-overlay">
+                        <h3>Intelligent Chatbot</h3>
+                        <p>24/7 customer support automation solution</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="marketing">
+                    <img src="images/portfolio/marketing.jpg" alt="Marketing Campaign">
+                    <div class="portfolio-overlay">
+                        <h3>Digital Marketing Campaign</h3>
+                        <p>300% ROI increase through targeted strategies</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="app">
+                    <img src="images/portfolio/product-demo.jpg" alt="Mobile App">
+                    <div class="portfolio-overlay">
+                        <h3>Productivity Mobile App</h3>
+                        <p>Cross-platform app with AI task management</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <img src="images/portfolio/brand-identity.jpg" alt="Brand Identity">
+                    <div class="portfolio-overlay">
+                        <h3>Corporate Website</h3>
+                        <p>Complete brand identity and web presence</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <img src="images/portfolio/blog-series.jpg" alt="AI Analytics">
+                    <div class="portfolio-overlay">
+                        <h3>AI Analytics Dashboard</h3>
+                        <p>Real-time business intelligence platform</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our <span class="accent">Clients Say</span></h2>
+                <p>Real feedback from businesses we've transformed</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Rahisisha Tech transformed our entire workflow with their AI automation solutions. We've seen a 70% reduction in manual tasks and our team can now focus on strategic initiatives."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/nathan-dumlao-lvWw_G8tKsk-unsplash.jpg" alt="Sarah Johnson">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>CEO, TechStart Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The mobile app they developed exceeded our expectations. The user experience is phenomenal and our customer engagement has increased by 200%."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/minh-pham-AHCmAX0k_J4-unsplash.jpg" alt="Michael Chen">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Founder, RetailPro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Their digital marketing strategy helped us achieve a 300% ROI within the first quarter. The team's expertise in AI-driven campaigns is unmatched."</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/desola-lanre-ologun-IgUR1iX0mqM-unsplash.jpg" alt="Emma Rodriguez">
+                            <div class="author-info">
+                                <h4>Emma Rodriguez</h4>
+                                <span>Marketing Director, GrowthCorp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-nav">
+                <button class="nav-dot active" data-slide="0"></button>
+                <button class="nav-dot" data-slide="1"></button>
+                <button class="nav-dot" data-slide="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest <span class="accent">Insights</span></h2>
+                <p>Stay updated with the latest trends in AI and technology</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card featured">
+                    <img src="images/extra photos/carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="AI Trends 2024">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI Trends</span>
+                            <span class="blog-date">Dec 15, 2023</span>
+                        </div>
+                        <h3>The Future of AI in Business Automation</h3>
+                        <p>Discover how artificial intelligence is reshaping business processes and what it means for your company's future.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <img src="images/extra photos/chris-ried-ieic5Tq8YMk-unsplash.jpg" alt="Web Development">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Development</span>
+                            <span class="blog-date">Dec 12, 2023</span>
+                        </div>
+                        <h3>Modern Web Development Best Practices</h3>
+                        <p>Essential techniques and frameworks for building high-performance web applications in 2024.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <img src="images/extra photos/joshua-sortino-LqKhnDzSF-8-unsplash.jpg" alt="Digital Marketing">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Marketing</span>
+                            <span class="blog-date">Dec 10, 2023</span>
+                        </div>
+                        <h3>AI-Powered Marketing Strategies</h3>
+                        <p>How machine learning is revolutionizing digital marketing campaigns and customer targeting.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="blog-cta">
+                <a href="blog.html" class="btn btn-outline">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Let's Build Something <span class="accent">Amazing</span></h2>
+                <p>Ready to transform your business? Get in touch with our experts today.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>123 Tech Street, Innovation District<br>Digital City, DC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@rahisishatech.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="web-design">Website Design & Development</option>
+                            <option value="app-development">Mobile & Web App Development</option>
+                            <option value="ai-automation">AI Automation Solutions</option>
+                            <option value="digital-marketing">Digital Marketing & Strategy</option>
+                            <option value="ai-training">AI Tools Training & Workshops</option>
+                            <option value="consultation">Free Consultation</option>
+                        </select>
+                        <label for="service">Service Interest</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Project Details</label>
+                    </div>
+                    
+                    <div class="form-group file-upload">
+                        <input type="file" id="file" name="file" multiple accept=".pdf,.doc,.docx,.txt">
+                        <label for="file">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Attach Files (Optional)
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rahisisha<span class="accent">Tech</span></h3>
+                    <p>Transforming businesses through innovative AI solutions and cutting-edge technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile Apps</a></li>
+                        <li><a href="#services">AI Automation</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#services">AI Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="quote.html">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest insights and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rahisisha Tech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="quote-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Get Your Free Quote</h2>
+            <form class="quote-form">
+                <div class="form-step active" data-step="1">
+                    <h3>Project Type</h3>
+                    <div class="service-options">
+                        <label class="service-option">
+                            <input type="radio" name="project-type" value="web-design">
+                            <span>Website Design & Development</span>
+                        </label>
+                        <label class="service-option">
+                            <input type="radio" name="project-type" value="app-development">
+                            <span>Mobile & Web App Development</span>
+                        </label>
+                        <label class="service-option">
+                            <input type="radio" name="project-type" value="ai-automation">
+                            <span>AI Automation Solutions</span>
+                        </label>
+                        <label class="service-option">
+                            <input type="radio" name="project-type" value="digital-marketing">
+                            <span>Digital Marketing & Strategy</span>
+                        </label>
+                        <label class="service-option">
+                            <input type="radio" name="project-type" value="ai-training">
+                            <span>AI Tools Training & Workshops</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary next-step">Next</button>
+                </div>
+                
+                <div class="form-step" data-step="2">
+                    <h3>Project Details</h3>
+                    <div class="form-group">
+                        <input type="text" name="company" placeholder="Company Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="contact-name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="contact-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="budget" required>
+                            <option value="">Select Budget Range</option>
+                            <option value="5k-10k">$5,000 - $10,000</option>
+                            <option value="10k-25k">$10,000 - $25,000</option>
+                            <option value="25k-50k">$25,000 - $50,000</option>
+                            <option value="50k+">$50,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="timeline" required>
+                            <option value="">Project Timeline</option>
+                            <option value="asap">ASAP</option>
+                            <option value="1-3months">1-3 Months</option>
+                            <option value="3-6months">3-6 Months</option>
+                            <option value="6months+">6+ Months</option>
+                        </select>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                        <button type="button" class="btn btn-primary next-step">Next</button>
+                    </div>
+                </div>
+                
+                <div class="form-step" data-step="3">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <textarea name="project-description" placeholder="Describe your project requirements..." rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="project-files" multiple>
+                        <label>Upload relevant files (optional)</label>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                        <button type="submit" class="btn btn-primary">Submit Quote Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="demo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book a Demo</h2>
+            <p>Schedule a personalized demo to see how our solutions can transform your business.</p>
+            <form class="demo-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="company" placeholder="Company Name" required>
+                </div>
+                <div class="form-group">
+                    <select name="demo-type" required>
+                        <option value="">Select Demo Type</option>
+                        <option value="ai-automation">AI Automation Demo</option>
+                        <option value="web-development">Web Development Showcase</option>
+                        <option value="mobile-apps">Mobile App Solutions</option>
+                        <option value="digital-marketing">Marketing Strategy Session</option>
+                        <option value="ai-training">AI Training Overview</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="datetime-local" name="preferred-time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Schedule Demo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/1234567890" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Cookie Consent -->
+    <div id="cookie-consent" class="cookie-consent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience and provide personalized content. By continuing to use our site, you agree to our cookie policy.</p>
+            <div class="cookie-buttons">
+                <button class="btn btn-secondary" onclick="declineCookies()">Decline</button>
+                <button class="btn btn-primary" onclick="acceptCookies()">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h4>AI Assistant</h4>
+            <button class="chatbot-toggle" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                <p>Hi! I'm your AI assistant. How can I help you today?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="chatbot-trigger" onclick="toggleChatbot()">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

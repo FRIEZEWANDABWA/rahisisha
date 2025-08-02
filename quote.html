@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Free Quote - Rahisisha Tech | Custom AI Solutions</title>
+    <meta name="description" content="Get a free, detailed quote for your AI automation, web development, or digital marketing project. Fast response within 24 hours.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><h2>Rahisisha<span class="accent">Tech</span></h2></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <div class="language-switcher">
+                    <select id="language-select">
+                        <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                    </select>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quote Hero Section -->
+    <section class="quote-hero">
+        <div class="container">
+            <div class="quote-hero-content">
+                <h1>Get Your Free <span class="accent">Project Quote</span></h1>
+                <p>Tell us about your project and receive a detailed, personalized quote within 24 hours. No obligations, just honest pricing.</p>
+                <div class="quote-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-clock"></i>
+                        <span>24-Hour Response</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>No Obligations</span>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-handshake"></i>
+                        <span>Free Consultation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Form Section -->
+    <section class="quote-form-section">
+        <div class="container">
+            <div class="quote-form-container">
+                <div class="quote-form-sidebar">
+                    <h3>What's Included in Your Quote</h3>
+                    <div class="quote-includes">
+                        <div class="include-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Detailed Project Breakdown</h4>
+                                <p>Complete scope of work with timeline and deliverables</p>
+                            </div>
+                        </div>
+                        <div class="include-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Technology Recommendations</h4>
+                                <p>Best-fit solutions tailored to your specific needs</p>
+                            </div>
+                        </div>
+                        <div class="include-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Investment Options</h4>
+                                <p>Flexible pricing models and payment plans</p>
+                            </div>
+                        </div>
+                        <div class="include-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Free Strategy Session</h4>
+                                <p>30-minute consultation to discuss your project</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-mini">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"The quote was incredibly detailed and helped us understand exactly what we needed. The team delivered everything as promised!"</p>
+                        <div class="testimonial-author">
+                            <img src="images/extra photos/nathan-dumlao-lvWw_G8tKsk-unsplash.jpg" alt="Client">
+                            <div>
+                                <strong>Sarah Johnson</strong>
+                                <span>CEO, TechStart Inc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quote-form-main">
+                    <form class="quote-form" id="quote-form">
+                        <!-- Step 1: Project Type -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-header">
+                                <h3>What type of project do you need?</h3>
+                                <p>Select the service that best matches your requirements</p>
+                            </div>
+                            
+                            <div class="service-selection">
+                                <label class="service-option">
+                                    <input type="radio" name="project-type" value="web-design" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-palette"></i>
+                                        <h4>Website Design & Development</h4>
+                                        <p>Custom websites, e-commerce, and web applications</p>
+                                        <span class="price-range">Starting from $2,500</span>
+                                    </div>
+                                </label>
+
+                                <label class="service-option">
+                                    <input type="radio" name="project-type" value="app-development" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <h4>Mobile & Web App Development</h4>
+                                        <p>iOS, Android, and cross-platform applications</p>
+                                        <span class="price-range">Starting from $5,000</span>
+                                    </div>
+                                </label>
+
+                                <label class="service-option featured">
+                                    <input type="radio" name="project-type" value="ai-automation" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-robot"></i>
+                                        <h4>AI Automation Solutions</h4>
+                                        <p>Intelligent workflows, chatbots, and process automation</p>
+                                        <span class="price-range">Starting from $3,500</span>
+                                        <div class="popular-badge">Most Popular</div>
+                                    </div>
+                                </label>
+
+                                <label class="service-option">
+                                    <input type="radio" name="project-type" value="digital-marketing" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-chart-line"></i>
+                                        <h4>Digital Marketing & Strategy</h4>
+                                        <p>SEO, PPC, social media, and content marketing</p>
+                                        <span class="price-range">Starting from $1,500/month</span>
+                                    </div>
+                                </label>
+
+                                <label class="service-option">
+                                    <input type="radio" name="project-type" value="ai-training" required>
+                                    <div class="option-content">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <h4>AI Tools Training & Workshops</h4>
+                                        <p>Team training and AI implementation workshops</p>
+                                        <span class="price-range">Starting from $2,000</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="step-navigation">
+                                <button type="button" class="btn btn-primary next-step">
+                                    Continue <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Project Details -->
+                        <div class="form-step" data-step="2">
+                            <div class="step-header">
+                                <h3>Tell us about your project</h3>
+                                <p>The more details you provide, the more accurate your quote will be</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="company-name">Company Name *</label>
+                                    <input type="text" id="company-name" name="company-name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="industry">Industry</label>
+                                    <select id="industry" name="industry">
+                                        <option value="">Select Industry</option>
+                                        <option value="technology">Technology</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="finance">Finance</option>
+                                        <option value="retail">Retail & E-commerce</option>
+                                        <option value="education">Education</option>
+                                        <option value="manufacturing">Manufacturing</option>
+                                        <option value="real-estate">Real Estate</option>
+                                        <option value="consulting">Consulting</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="company-size">Company Size</label>
+                                    <select id="company-size" name="company-size">
+                                        <option value="">Select Size</option>
+                                        <option value="startup">Startup (1-10 employees)</option>
+                                        <option value="small">Small Business (11-50 employees)</option>
+                                        <option value="medium">Medium Business (51-200 employees)</option>
+                                        <option value="large">Large Enterprise (200+ employees)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="budget-range">Budget Range *</label>
+                                    <select id="budget-range" name="budget-range" required>
+                                        <option value="">Select Budget Range</option>
+                                        <option value="under-5k">Under $5,000</option>
+                                        <option value="5k-10k">$5,000 - $10,000</option>
+                                        <option value="10k-25k">$10,000 - $25,000</option>
+                                        <option value="25k-50k">$25,000 - $50,000</option>
+                                        <option value="50k-100k">$50,000 - $100,000</option>
+                                        <option value="100k-plus">$100,000+</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="timeline">Project Timeline *</label>
+                                    <select id="timeline" name="timeline" required>
+                                        <option value="">Select Timeline</option>
+                                        <option value="asap">ASAP (Rush Project)</option>
+                                        <option value="1-month">Within 1 Month</option>
+                                        <option value="1-3-months">1-3 Months</option>
+                                        <option value="3-6-months">3-6 Months</option>
+                                        <option value="6-months-plus">6+ Months</option>
+                                        <option value="flexible">Flexible Timeline</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="current-solution">Current Solution</label>
+                                    <select id="current-solution" name="current-solution">
+                                        <option value="">Do you have an existing solution?</option>
+                                        <option value="none">No existing solution</option>
+                                        <option value="basic">Basic solution in place</option>
+                                        <option value="advanced">Advanced solution needs upgrade</option>
+                                        <option value="custom">Custom solution needs replacement</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="step-navigation">
+                                <button type="button" class="btn btn-secondary prev-step">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-primary next-step">
+                                    Continue <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Contact Information -->
+                        <div class="form-step" data-step="3">
+                            <div class="step-header">
+                                <h3>Your contact information</h3>
+                                <p>We'll use this information to send your quote and schedule a consultation</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contact-name">Full Name *</label>
+                                    <input type="text" id="contact-name" name="contact-name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="job-title">Job Title</label>
+                                    <input type="text" id="job-title" name="job-title" placeholder="e.g., CEO, Marketing Manager">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="preferred-contact">Preferred Contact Method</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="preferred-contact" value="email" checked>
+                                            <span>Email</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="preferred-contact" value="phone">
+                                            <span>Phone Call</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="preferred-contact" value="video">
+                                            <span>Video Call</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label for="best-time">Best Time to Contact</label>
+                                    <select id="best-time" name="best-time">
+                                        <option value="">Select preferred time</option>
+                                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                                        <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                                        <option value="evening">Evening (5 PM - 8 PM)</option>
+                                        <option value="anytime">Anytime</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="step-navigation">
+                                <button type="button" class="btn btn-secondary prev-step">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-primary next-step">
+                                    Continue <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Project Description -->
+                        <div class="form-step" data-step="4">
+                            <div class="step-header">
+                                <h3>Project details and requirements</h3>
+                                <p>Help us understand your vision and specific requirements</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="project-description">Project Description *</label>
+                                <textarea id="project-description" name="project-description" rows="6" required 
+                                    placeholder="Please describe your project in detail. Include:
+• What you want to achieve
+• Key features or functionality needed
+• Target audience
+• Any specific requirements or preferences
+• Integration needs with existing systems"></textarea>
+                                <div class="char-counter">
+                                    <span id="char-count">0</span> / 2000 characters
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="success-metrics">How will you measure success?</label>
+                                <textarea id="success-metrics" name="success-metrics" rows="3" 
+                                    placeholder="e.g., Increase sales by 30%, Reduce processing time by 50%, Improve customer satisfaction scores"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inspiration">Inspiration or References</label>
+                                <textarea id="inspiration" name="inspiration" rows="3" 
+                                    placeholder="Share any websites, apps, or solutions you admire or want to use as reference"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="additional-info">Additional Information</label>
+                                <textarea id="additional-info" name="additional-info" rows="3" 
+                                    placeholder="Any other details, concerns, or questions you'd like to share"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="project-files">Upload Files (Optional)</label>
+                                <div class="file-upload-area" id="file-upload-area">
+                                    <input type="file" id="project-files" name="project-files" multiple 
+                                        accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.zip">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag & drop files here or <span class="upload-link">browse</span></p>
+                                        <small>Supported formats: PDF, DOC, TXT, Images, ZIP (Max 10MB each)</small>
+                                    </div>
+                                </div>
+                                <div class="uploaded-files" id="uploaded-files"></div>
+                            </div>
+
+                            <div class="step-navigation">
+                                <button type="button" class="btn btn-secondary prev-step">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-primary next-step">
+                                    Review Quote <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Review and Submit -->
+                        <div class="form-step" data-step="5">
+                            <div class="step-header">
+                                <h3>Review your quote request</h3>
+                                <p>Please review your information before submitting</p>
+                            </div>
+
+                            <div class="quote-review" id="quote-review">
+                                <!-- Review content will be populated by JavaScript -->
+                            </div>
+
+                            <div class="terms-agreement">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="terms-agreement" required>
+                                    <span class="checkmark"></span>
+                                    <span>I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></span>
+                                </label>
+                                
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="newsletter-signup">
+                                    <span class="checkmark"></span>
+                                    <span>Subscribe to our newsletter for tech insights and updates</span>
+                                </label>
+                            </div>
+
+                            <div class="step-navigation">
+                                <button type="button" class="btn btn-secondary prev-step">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
+                                <button type="submit" class="btn btn-primary submit-quote">
+                                    <i class="fas fa-paper-plane"></i> Submit Quote Request
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Indicator -->
+                        <div class="form-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-steps">
+                                <div class="progress-step active" data-step="1">
+                                    <div class="step-number">1</div>
+                                    <span>Service</span>
+                                </div>
+                                <div class="progress-step" data-step="2">
+                                    <div class="step-number">2</div>
+                                    <span>Details</span>
+                                </div>
+                                <div class="progress-step" data-step="3">
+                                    <div class="step-number">3</div>
+                                    <span>Contact</span>
+                                </div>
+                                <div class="progress-step" data-step="4">
+                                    <div class="step-number">4</div>
+                                    <span>Requirements</span>
+                                </div>
+                                <div class="progress-step" data-step="5">
+                                    <div class="step-number">5</div>
+                                    <span>Review</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="quote-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked <span class="accent">Questions</span></h2>
+                <p>Common questions about our quote process and services</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How long does it take to receive a quote?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically provide detailed quotes within 24 hours of receiving your request. For complex projects, we may need up to 48 hours to ensure accuracy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is the quote really free with no obligations?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our quotes are completely free with no strings attached. You're under no obligation to proceed, and we won't pressure you with sales calls.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What information do you need for an accurate quote?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The more details you provide about your project requirements, timeline, and budget, the more accurate our quote will be. We also appreciate any reference materials or inspiration you can share.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can you work within my budget?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible solutions and can often adjust project scope to fit your budget. We'll provide options and recommendations to maximize value within your investment range.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer payment plans?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer flexible payment plans including milestone-based payments, monthly installments, and custom arrangements based on your cash flow needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What happens after I submit the quote request?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll receive an email confirmation immediately, followed by a detailed quote within 24 hours. We'll also schedule a free consultation call to discuss your project and answer any questions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rahisisha<span class="accent">Tech</span></h3>
+                    <p>Transforming businesses through innovative AI solutions and cutting-edge technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#services">Web Development</a></li>
+                        <li><a href="index.html#services">Mobile Apps</a></li>
+                        <li><a href="index.html#services">AI Automation</a></li>
+                        <li><a href="index.html#services">Digital Marketing</a></li>
+                        <li><a href="index.html#services">AI Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="quote.html">Get Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest insights and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Rahisisha Tech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Elements -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/1234567890" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="quote.js"></script>
+</body>
+</html>
