@@ -54,7 +54,14 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div id="particles-js"></div>
+        <div class="hero-background-slider">
+            <div class="hero-slide active" style="background-image: url('images/backgrounds/aerps-com-5e4Zlblkvks-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('images/backgrounds/carlos-muza-hpjSkU2UYSU-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('images/backgrounds/igor-omilaev-eGGFZ5X2LnA-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('images/backgrounds/igor-omilaev-gVQLAbGVB6Q-unsplash.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('images/backgrounds/zhenyu-luo-kE0JmtbvXxM-unsplash.jpg')"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
@@ -76,11 +83,11 @@
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <h3>500+</h3>
-                    <p>Projects Completed</p>
+                    <h3 class="counter" data-target="67">0</h3>
+                    <p>AI Projects</p>
                 </div>
                 <div class="stat">
-                    <h3>98%</h3>
+                    <h3 class="counter" data-target="99">0</h3>
                     <p>Client Satisfaction</p>
                 </div>
                 <div class="stat">
@@ -98,13 +105,16 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <h2>Our <span class="accent">Services</span></h2>
+                <h2>Our AI-Powered <span class="accent">Services</span></h2>
                 <p>Comprehensive tech solutions tailored to accelerate your business growth</p>
             </div>
             <div class="services-grid">
-                <a href="services.html#web-design" class="service-block">
-                    <img src="images/extra photos/chris-ried-ieic5Tq8YMk-unsplash.jpg" alt="Web Development">
+                <a href="services.html#web-design" class="service-block" style="background-image: url('images/backgrounds/aerps-com-5e4Zlblkvks-unsplash.jpg')">
+                    <div class="service-overlay"></div>
                     <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
                         <h3>Website Design & Development</h3>
                         <p>Modern, responsive websites that convert visitors</p>
                         <span class="price">Starting from $150</span>
@@ -720,14 +730,14 @@
     <!-- AI Chatbot -->
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
-            <h4>Rahisisha AI Assistant</h4>
+            <h4>Quirk AI</h4>
             <button class="chatbot-toggle" onclick="toggleChatbot()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <div class="message bot-message">
-                <p>Hi, I am Rahisisha AI. How can I help you today?</p>
+                <p>Hi, How can I help you today?</p>
             </div>
         </div>
         <div class="chatbot-input">
@@ -749,7 +759,7 @@
                 <i class="fas fa-robot"></i>
             </div>
             <div class="ai-message">
-                <p>Hi, I am Rahisisha AI. How can I help you today?</p>
+                <p>Hi, How can I help you today?</p>
             </div>
             <button class="ai-close" onclick="closeAIWelcome()">
                 <i class="fas fa-times"></i>
