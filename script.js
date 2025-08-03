@@ -659,7 +659,10 @@ function addMessage(message, sender) {
     const chatbotMessages = document.getElementById('chatbot-messages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
-    messageDiv.innerHTML = `<p>${message}</p>`;
+    
+    const messageP = document.createElement('p');
+    messageP.textContent = message; // Use textContent instead of innerHTML
+    messageDiv.appendChild(messageP);
     
     chatbotMessages.appendChild(messageDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -780,12 +783,17 @@ function initLanguageSwitcher() {
 }
 
 function switchLanguage(language) {
-    // Store language preference
-    localStorage.setItem('preferredLanguage', language);
-    
-    // In a real implementation, you would load language files
-    // For now, we'll just show a notification
-    showNotification(`Language switched to ${language.toUpperCase()}`, 'info');
+    try {
+        // Store language preference
+        localStorage.setItem('preferredLanguage', language);
+        
+        // In a real implementation, you would load language files
+        // For now, we'll just show a notification
+        showNotification(`Language switched to ${language.toUpperCase()}`, 'info');
+    } catch (error) {
+        console.error('Failed to switch language:', error);
+        showNotification('Failed to switch language', 'error');
+    }
 }
 
 // Newsletter Form
@@ -829,15 +837,25 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas ${getNotificationIcon(type)}"></i>
-            <span>${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    `;
+    
+    const content = document.createElement('div');
+    content.className = 'notification-content';
+    
+    const icon = document.createElement('i');
+    icon.className = `fas ${getNotificationIcon(type)}`;
+    
+    const span = document.createElement('span');
+    span.textContent = message; // Use textContent instead of innerHTML
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'notification-close';
+    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    closeBtn.onclick = () => notification.remove();
+    
+    content.appendChild(icon);
+    content.appendChild(span);
+    content.appendChild(closeBtn);
+    notification.appendChild(content);
     
     // Add styles
     notification.style.cssText = `
