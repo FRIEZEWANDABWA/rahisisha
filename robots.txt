@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://rahisishatech.com/sitemap.xml
+Sitemap: https://rahisisha.tech/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin/

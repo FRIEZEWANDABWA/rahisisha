@@ -1,0 +1,21 @@
+{
+  "name": "Rahisisha Tech",
+  "short_name": "Rahisisha",
+  "description": "AI-Powered Business Solutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#00BFFF",
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
