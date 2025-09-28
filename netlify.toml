@@ -4,18 +4,6 @@
   command = "# No build needed"
 
 [[redirects]]
-  from = "https://rahisisha.netlify.app/*"
-  to = "https://rahisisha.tech/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.rahisisha.netlify.app/*"
-  to = "https://rahisisha.tech/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
