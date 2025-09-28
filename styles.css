@@ -1319,9 +1319,9 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .chatbot {
     position: fixed;
     bottom: 100px;
-    right: 2rem;
-    width: 350px;
-    height: 500px;
+    right: 1rem;
+    width: min(350px, calc(100vw - 2rem));
+    height: min(500px, calc(100vh - 200px));
     background: var(--background-card);
     border-radius: var(--border-radius);
     border: 1px solid rgba(224, 224, 224, 0.1);
@@ -1410,8 +1410,8 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 .chatbot-trigger {
     position: fixed;
-    bottom: 2rem;
-    right: 80px;
+    bottom: 1.5rem;
+    right: 1.5rem;
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, #00BFFF 0%, #0080FF 100%);
@@ -1427,10 +1427,12 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     transition: all 0.3s ease;
     animation: pulse 2s infinite;
     border: 3px solid rgba(255, 255, 255, 0.2);
+    touch-action: manipulation;
 }
 
-.chatbot-trigger:hover {
-    transform: scale(1.1) rotate(10deg);
+.chatbot-trigger:hover,
+.chatbot-trigger:active {
+    transform: scale(1.1);
     box-shadow: 0 12px 35px rgba(0, 191, 255, 0.6);
 }
 
@@ -1623,31 +1625,49 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
         margin-top: 1rem;
     }
 
+    .hero {
+        min-height: 100vh;
+        padding: 0;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
         padding: 2rem 1rem;
+        margin-top: 70px;
     }
 
     .hero-stats {
         grid-template-columns: 1fr;
         gap: 1rem;
+        margin-top: 2rem;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 15px 20px;
+        font-size: 1rem;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        line-height: 1.2;
     }
 
     .hero-subtitle {
         font-size: 1rem;
-        padding: 0 1rem;
+        padding: 0;
+        line-height: 1.6;
     }
 
     .services-grid {
@@ -1705,8 +1725,25 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
     .chatbot {
         width: calc(100vw - 2rem);
+        height: calc(100vh - 150px);
         right: 1rem;
         left: 1rem;
+        bottom: 80px;
+    }
+
+    .chatbot-messages {
+        flex: 1;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .chatbot-input {
+        padding: 0.75rem;
+    }
+
+    .chatbot-input input {
+        padding: 12px;
+        font-size: 16px;
     }
 
     .floating-whatsapp {
@@ -1714,16 +1751,26 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
         right: 1rem;
     }
 
+    .floating-whatsapp a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
     .chatbot-trigger {
-        right: 70px;
+        right: 1rem;
         bottom: 1rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
     }
 
     .ai-welcome {
         right: 1rem;
         left: 1rem;
-        bottom: 160px;
+        bottom: 70px;
         max-width: none;
+        font-size: 0.9rem;
     }
 
     .services-grid {
