@@ -1414,22 +1414,24 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     right: 80px;
     width: 60px;
     height: 60px;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #00BFFF 0%, #0080FF 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
-    box-shadow: var(--shadow-dark);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
     z-index: 1000;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     animation: pulse 2s infinite;
+    border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .chatbot-trigger:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 12px 35px rgba(0, 191, 255, 0.6);
 }
 
 /* AI Welcome Popup */

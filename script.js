@@ -625,11 +625,14 @@ function initChatbot() {
         'default': 'I\'m here to help! You can ask me about our services, pricing, portfolio, or anything else. Try asking about "services" or "contact".'
     };
 
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    }
 }
 
 function toggleChatbot() {
@@ -667,7 +670,7 @@ function addTypingIndicator() {
     const typingDiv = document.createElement('div');
     typingDiv.className = 'message bot-message typing-indicator';
     typingDiv.id = 'typing-indicator';
-    typingDiv.innerHTML = '<p>Quirk AI is typing...</p>';
+    typingDiv.innerHTML = '<p>Rahisisha AI is typing...</p>';
     chatbotMessages.appendChild(typingDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
@@ -724,9 +727,13 @@ async function getBotResponse(message) {
 function getFallbackResponse(message) {
     const fallbacks = {
         'hello': 'Hi! I\'m Rahisisha AI. How can I help you today?',
-        'services': 'We offer web development, mobile apps, AI automation, digital marketing, and AI training.',
-        'contact': 'You can reach us at hello@rahisishatech.com or call +254111546120.',
-        'default': 'I\'m here to help! Ask me about our services, pricing, or contact information.'
+        'hi': 'Hello! I\'m Rahisisha AI, here to assist you.',
+        'services': 'We offer 5 core services: Web Development ($150+), Mobile Apps ($500+), AI Automation ($200+), Digital Marketing ($500/month), and AI Training ($100+).',
+        'pricing': 'Our pricing: Web Development starts at $150, Mobile Apps at $500, AI Automation at $200, Digital Marketing at $500/month, AI Training at $100.',
+        'contact': 'You can reach us at hello@rahisishatech.com, call +254111546120, or WhatsApp us directly!',
+        'demo': 'I\'d be happy to help you schedule a demo! What service interests you most?',
+        'quote': 'Ready for a quote? What type of project are you planning?',
+        'default': 'I\'m Rahisisha AI! Ask me about our services, pricing, contact info, or to schedule a demo. How can I help?'
     };
     
     const lowerMessage = message.toLowerCase();
