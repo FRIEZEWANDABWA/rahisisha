@@ -1,0 +1,15 @@
+{
+  "name": "rahisisha-tech",
+  "version": "1.0.0",
+  "description": "Rahisisha Tech Website with AI Chatbot",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required'",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

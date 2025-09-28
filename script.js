@@ -637,7 +637,7 @@ function toggleChatbot() {
     chatbot.classList.toggle('active');
 }
 
-function sendMessage() {
+async function sendMessage() {
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const message = chatbotInput.value.trim();
@@ -648,11 +648,35 @@ function sendMessage() {
     addMessage(message, 'user');
     chatbotInput.value = '';
     
-    // Simulate typing delay
-    setTimeout(() => {
-        const response = getBotResponse(message);
+    // Show typing indicator
+    addTypingIndicator();
+    
+    try {
+        // Get response from webhook
+        const response = await getBotResponse(message);
+        removeTypingIndicator();
         addMessage(response, 'bot');
-    }, 1000);
+    } catch (error) {
+        removeTypingIndicator();
+        addMessage('Sorry, I\'m having trouble right now. Please try again.', 'bot');
+    }
+}
+
+function addTypingIndicator() {
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message typing-indicator';
+    typingDiv.id = 'typing-indicator';
+    typingDiv.innerHTML = '<p>Quirk AI is typing...</p>';
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
 }
 
 function addMessage(message, sender) {
@@ -668,37 +692,59 @@ function addMessage(message, sender) {
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-function getBotResponse(message) {
-    const responses = {
-        'hello': 'Hi there! I\'m Rahisisha AI. How can I help you today?',
-        'hi': 'Hello! I\'m here to assist you with our services. What would you like to know?',
-        'services': 'We offer 5 core services: 1) Website Design & Development 2) Mobile & Web Apps 3) AI Automation Solutions 4) Digital Marketing 5) AI Training. Which interests you most?',
-        'web': 'Our web development services include responsive design, SEO optimization, and modern frameworks. Starting from $2,500. Would you like a quote?',
-        'mobile': 'We build cross-platform mobile apps using React Native and Flutter. Starting from $5,000. Interested in learning more?',
-        'ai': 'Our AI automation solutions can reduce manual tasks by 70% and boost productivity by 300%. Starting from $3,500. Want to see how?',
-        'marketing': 'Our digital marketing services typically deliver 300% ROI increase. Starting from $1,500/month. Ready to grow your business?',
-        'training': 'We offer AI training workshops from 1-3 days. Starting from $2,000. Perfect for teams wanting to leverage AI tools.',
-        'pricing': 'Our pricing varies by service: Web ($2,500+), Mobile Apps ($5,000+), AI Automation ($3,500+), Marketing ($1,500/month), Training ($2,000+). Need a custom quote?',
-        'contact': 'You can reach us at hello@rahisishatech.com, call +254111546120, or WhatsApp us directly. We\'re here 24/7!',
-        'whatsapp': 'Click the WhatsApp button to chat with us directly at +254111546120!',
-        'about': 'Rahisisha Tech was founded in 2024 in Kenya. We\'ve completed 125+ projects and helped businesses across 5+ countries. We make AI accessible for African businesses.',
-        'portfolio': 'Check out our portfolio section to see our latest projects and success stories! We\'ve helped 500+ businesses transform digitally.',
-        'demo': 'I\'d be happy to help you schedule a demo! Click the "Book Demo" button to get started.',
-        'quote': 'Ready for a quote? Click the "Get Free Quote" button and we\'ll provide a custom estimate for your project.',
-        'team': 'Our team includes 15+ experts led by Founder Frieze Wandabwa, CTO Teddy Githiji, and other specialists in AI, design, and marketing.',
-        'location': 'We\'re based in Kenya but serve clients across Africa and globally. We understand local challenges with international quality standards.',
-        'default': 'I\'m Rahisisha AI, here to help with our services! Ask me about: "services", "pricing", "contact", "demo", or "quote". What interests you?'
+async function getBotResponse(message) {
+    try {
+        // Send message to webhook
+        const response = await fetch('/.netlify/functions/chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                user_id: getSessionId(),
+                timestamp: new Date().toISOString(),
+                source: 'website_chat'
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Webhook failed');
+        }
+        
+        const data = await response.json();
+        return data.reply || data.response || data.message || 'Sorry, I\'m having trouble right now. Please try again.';
+        
+    } catch (error) {
+        console.error('Chatbot webhook error:', error);
+        return getFallbackResponse(message);
+    }
+}
+
+function getFallbackResponse(message) {
+    const fallbacks = {
+        'hello': 'Hi! I\'m Rahisisha AI. How can I help you today?',
+        'services': 'We offer web development, mobile apps, AI automation, digital marketing, and AI training.',
+        'contact': 'You can reach us at hello@rahisishatech.com or call +254111546120.',
+        'default': 'I\'m here to help! Ask me about our services, pricing, or contact information.'
     };
     
     const lowerMessage = message.toLowerCase();
-    
-    for (let key in responses) {
+    for (let key in fallbacks) {
         if (lowerMessage.includes(key)) {
-            return responses[key];
+            return fallbacks[key];
         }
     }
-    
-    return responses.default;
+    return fallbacks.default;
+}
+
+function getSessionId() {
+    let sessionId = localStorage.getItem('chatSessionId');
+    if (!sessionId) {
+        sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('chatSessionId', sessionId);
+    }
+    return sessionId;
 }
 
 // Cookie Consent
