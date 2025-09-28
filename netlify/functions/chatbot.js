@@ -61,6 +61,19 @@ exports.handler = async (event, context) => {
       };
     }
 
+    // Security: Validate webhook URL domain
+    if (!N8N_WEBHOOK_URL.includes('n8n.rahisisha.tech')) {
+      console.error('Invalid webhook URL domain');
+      return {
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ response: 'Service configuration error' })
+      };
+    }
+
     console.log('Calling webhook:', N8N_WEBHOOK_URL ? 'URL configured' : 'URL missing');
     console.log('Message payload:', { message: cleanMessage, user_id: user_id || 'anonymous' });
 
