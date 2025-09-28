@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'No build step required'",
+    "build": "exit 0",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {},

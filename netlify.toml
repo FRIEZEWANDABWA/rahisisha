@@ -1,6 +1,7 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+  command = "# No build needed"
 
 [[redirects]]
   from = "https://rahisisha.netlify.app/*"
