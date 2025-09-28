@@ -78,6 +78,7 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({
         message: cleanMessage,
+        sessionId: user_id || 'anonymous',
         user_id: user_id || 'anonymous',
         timestamp: new Date().toISOString(),
         source: 'website_chat'

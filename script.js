@@ -705,6 +705,7 @@ async function getBotResponse(message) {
             },
             body: JSON.stringify({
                 message: message,
+                sessionId: getSessionId(),
                 user_id: getSessionId(),
                 timestamp: new Date().toISOString(),
                 source: 'website_chat'
