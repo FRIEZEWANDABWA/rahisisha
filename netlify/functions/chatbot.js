@@ -4,7 +4,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://rahisisha.tech',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST'
       }
@@ -20,9 +20,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Security: Check origin
+    // Security: Check origin (allow both domains during setup)
     const origin = event.headers.origin || event.headers.referer;
-    if (origin && !origin.includes('rahisisha.tech') && !origin.includes('localhost')) {
+    if (origin && !origin.includes('rahisisha.tech') && !origin.includes('rahisisha.netlify.app') && !origin.includes('localhost')) {
+      console.log('Blocked origin:', origin);
       return {
         statusCode: 403,
         body: JSON.stringify({ error: 'Forbidden' })
@@ -51,10 +52,16 @@ exports.handler = async (event, context) => {
     if (!N8N_WEBHOOK_URL) {
       console.error('N8N_WEBHOOK_URL not configured');
       return {
-        statusCode: 500,
-        body: JSON.stringify({ response: 'Service temporarily unavailable' })
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ response: 'Service temporarily unavailable - webhook not configured' })
       };
     }
+
+    console.log('Calling webhook:', N8N_WEBHOOK_URL.substring(0, 50) + '...');
 
     // Call your n8n webhook with timeout
     const controller = new AbortController();
@@ -89,7 +96,7 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://rahisisha.tech',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST',
         'Cache-Control': 'no-cache'
@@ -107,7 +114,7 @@ exports.handler = async (event, context) => {
       statusCode: 200, // Don't expose errors to client
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://rahisisha.tech'
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
         response: 'I\'m having a brief moment of confusion. Please try again!'
