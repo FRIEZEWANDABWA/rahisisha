@@ -228,64 +228,31 @@
     <!-- Rahisisha AI Chatbot -->
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
-            <div class="chatbot-avatar">
-                <i class="fas fa-robot"></i>
-            </div>
             <div class="chatbot-info">
                 <h4>Rahisisha AI</h4>
-                <span class="chatbot-status online">Online</span>
+                <span class="chatbot-status">Online</span>
             </div>
             <div class="chatbot-actions">
                 <button class="chatbot-minimize" onclick="minimizeChatbot()">
                     <i class="fas fa-minus"></i>
                 </button>
-                <button class="chatbot-toggle" onclick="toggleChatbot()">
+                <button class="chatbot-close" onclick="toggleChatbot()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <div class="message bot-message">
-                <div class="message-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
                 <div class="message-content">
-                    <p>👋 Hi! I'm Rahisisha AI, your intelligent assistant.</p>
-                    <p>I can help you with:</p>
-                    <div class="quick-actions">
-                        <button class="quick-btn" onclick="sendQuickMessage('Tell me about your services')">🛠️ Services</button>
-                        <button class="quick-btn" onclick="sendQuickMessage('What are your prices?')">💰 Pricing</button>
-                        <button class="quick-btn" onclick="sendQuickMessage('I want a quote')">📋 Get Quote</button>
-                        <button class="quick-btn" onclick="sendQuickMessage('Contact information')">📞 Contact</button>
-                    </div>
+                    <p>Hi! I'm Rahisisha AI, how can I help you?</p>
                 </div>
-                <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
             </div>
-        </div>
-        <div class="chatbot-typing" id="chatbot-typing" style="display: none;">
-            <div class="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <span>Rahisisha AI is typing...</span>
         </div>
         <div class="chatbot-input">
-            <button class="attachment-btn" onclick="showAttachmentOptions()">
-                <i class="fas fa-paperclip"></i>
-            </button>
             <input type="text" id="chatbot-input" placeholder="Type your message...">
-            <button class="voice-btn" onclick="toggleVoiceInput()">
-                <i class="fas fa-microphone"></i>
-            </button>
             <button onclick="sendMessage()">
                 <i class="fas fa-paper-plane"></i>
             </button>
-        </div>
-        <div class="chatbot-suggestions" id="chatbot-suggestions">
-            <div class="suggestion-chip" onclick="sendQuickMessage('How much does a website cost?')">Website pricing</div>
-            <div class="suggestion-chip" onclick="sendQuickMessage('Do you offer mobile app development?')">Mobile apps</div>
-            <div class="suggestion-chip" onclick="sendQuickMessage('What is AI automation?')">AI automation</div>
         </div>
     </div>
 
@@ -297,25 +264,7 @@
         <div class="trigger-pulse"></div>
     </div>
 
-    <!-- Rahisisha AI Welcome Popup -->
-    <div id="ai-welcome" class="ai-welcome">
-        <div class="ai-welcome-content">
-            <div class="ai-avatar">
-                <i class="fas fa-robot"></i>
-            </div>
-            <div class="ai-message">
-                <p>👋 Hi! I'm your AI assistant.</p>
-                <p>Need help with services, pricing, or have questions?</p>
-                <div class="welcome-actions">
-                    <button class="btn-small btn-primary" onclick="toggleChatbot(); closeAIWelcome();">Chat Now</button>
-                    <button class="btn-small btn-outline" onclick="closeAIWelcome()">Maybe Later</button>
-                </div>
-            </div>
-            <button class="ai-close" onclick="closeAIWelcome()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
+
 
     <!-- Quote Modal -->
     <div id="quote-modal" class="modal">
@@ -378,7 +327,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="script-simple.js"></script>
 </body>
 </html>" < ! - -   G i t H u b   P a g e s   t r i g g e r   - - > "      
  
