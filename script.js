@@ -1139,8 +1139,9 @@ function initCounters() {
     
     const animateCounter = (counter) => {
         const target = parseInt(counter.getAttribute('data-target'));
-        const increment = target / 100;
-        let current = 0;
+        const startValue = parseInt(counter.textContent) || 0;
+        const increment = (target - startValue) / 60; // 60 frames for smooth animation
+        let current = startValue;
         
         const updateCounter = () => {
             if (current < target) {
@@ -1163,7 +1164,7 @@ function initCounters() {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
     
     counters.forEach(counter => {
         observer.observe(counter);
