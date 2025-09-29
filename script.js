@@ -21,6 +21,8 @@ function initializeWebsite() {
     initLanguageSwitcher();
     initNewsletterForm();
     initThemeToggle();
+    initCounters();
+    initROICalculator();
     
     // Show AI welcome popup after 3 seconds
     setTimeout(() => {
@@ -1129,6 +1131,90 @@ function closeAIWelcome() {
         aiWelcome.classList.remove('show');
         localStorage.setItem('aiWelcomeShown', 'true');
     }
+}
+
+// Counter Animation
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / 100;
+        let current = 0;
+        
+        const updateCounter = () => {
+            if (current < target) {
+                current += increment;
+                counter.textContent = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+        
+        updateCounter();
+    };
+    
+    // Use Intersection Observer to trigger animation when visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
+
+// ROI Calculator
+function initROICalculator() {
+    const roiNumbers = document.querySelectorAll('.roi-number');
+    
+    const animateROI = (element, targetValue) => {
+        const increment = targetValue / 50;
+        let current = 0;
+        
+        const updateROI = () => {
+            if (current < targetValue) {
+                current += increment;
+                element.textContent = Math.ceil(current) + '%';
+                requestAnimationFrame(updateROI);
+            } else {
+                element.textContent = targetValue + '%';
+            }
+        };
+        
+        updateROI();
+    };
+    
+    // Use Intersection Observer for ROI animation
+    const roiObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const text = element.textContent;
+                
+                // Set specific values for each ROI metric
+                if (text.includes('Time')) {
+                    animateROI(element, 70);
+                } else if (text.includes('Cost')) {
+                    animateROI(element, 45);
+                } else if (text.includes('Productivity')) {
+                    animateROI(element, 300);
+                }
+                
+                roiObserver.unobserve(element);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    roiNumbers.forEach(number => {
+        roiObserver.observe(number);
+    });
 }
 
 // Export functions for global access
