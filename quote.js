@@ -281,57 +281,99 @@ async function handleComprehensiveQuoteSubmission(form) {
     }
 }
 
-// API Integration
+// API Integration using Formspree
 async function submitQuoteToAPI(quoteData) {
     try {
-        // Try Netlify Functions first
-        const response = await fetch('/.netlify/functions/quote', {
+        // Submit to Formspree
+        const response = await fetch('https://formspree.io/f/xzzjekzp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(quoteData)
+            body: JSON.stringify({
+                subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
+                message: formatQuoteForEmail(quoteData),
+                email: quoteData.email,
+                name: quoteData.name || quoteData.fullName,
+                service: quoteData.service || quoteData.serviceType,
+                budget: quoteData.budget || quoteData.budgetRange,
+                phone: quoteData.phone ? `${quoteData.countryCode} ${quoteData.phone}` : '',
+                company: quoteData.companyName || '',
+                timeline: quoteData.timeline || '',
+                urgency: quoteData.urgency || '',
+                type: quoteData.type,
+                timestamp: quoteData.timestamp
+            })
         });
         
         if (response.ok) {
-            return await response.json();
+            return {
+                success: true,
+                message: 'Quote request submitted successfully',
+                quoteId: 'QUOTE_' + Date.now()
+            };
         } else {
-            throw new Error('Netlify function failed');
+            throw new Error('Formspree submission failed');
         }
         
     } catch (error) {
-        console.log('Netlify function not available, using fallback email method');
-        
-        // Fallback: Send email using EmailJS or similar service
-        return await sendEmailFallback(quoteData);
+        console.error('Quote submission error:', error);
+        return {
+            success: false,
+            message: 'Failed to submit quote request. Please try again.'
+        };
     }
 }
 
-async function sendEmailFallback(quoteData) {
-    try {
-        // This would integrate with EmailJS, Formspree, or similar service
-        // For now, we'll simulate success and log the data
-        console.log('Quote data to be sent:', quoteData);
-        
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // In a real implementation, you would integrate with:
-        // - EmailJS: emailjs.send()
-        // - Formspree: fetch to formspree endpoint
-        // - Custom webhook service
-        
-        return {
-            success: true,
-            message: 'Quote request received successfully',
-            quoteId: 'QUOTE_' + Date.now()
-        };
-        
-    } catch (error) {
-        return {
-            success: false,
-            message: error.message
-        };
+// Format quote data for email
+function formatQuoteForEmail(quoteData) {
+    const isSimple = quoteData.type === 'simple_quote';
+    const customerName = quoteData.name || quoteData.fullName;
+    
+    if (isSimple) {
+        return `
+NEW QUOTE REQUEST - Simple Form
+
+Contact Information:
+- Name: ${customerName}
+- Email: ${quoteData.email}
+
+Project Details:
+- Service: ${quoteData.service}
+- Budget: ${quoteData.budget}
+- Details: ${quoteData.details}
+
+Submitted: ${new Date(quoteData.timestamp).toLocaleString()}
+Source: ${quoteData.source}
+        `;
+    } else {
+        return `
+NEW QUOTE REQUEST - Comprehensive Form
+
+Contact Information:
+- Name: ${quoteData.fullName}
+- Email: ${quoteData.email}
+- Phone: ${quoteData.countryCode} ${quoteData.phone}
+${quoteData.companyName ? `- Company: ${quoteData.companyName}` : ''}
+${quoteData.location ? `- Location: ${quoteData.location}` : ''}
+
+Project Details:
+- Service: ${quoteData.serviceType}
+- Budget: ${quoteData.budgetRange}
+- Timeline: ${quoteData.timeline}
+- Urgency: ${quoteData.urgency}
+- Experience: ${quoteData.experience || 'Not specified'}
+
+Project Description:
+${quoteData.projectDescription}
+
+${quoteData.additionalNotes ? `Additional Notes:
+${quoteData.additionalNotes}
+` : ''}
+Newsletter: ${quoteData.newsletter ? 'Yes' : 'No'}
+Submitted: ${new Date(quoteData.timestamp).toLocaleString()}
+Source: ${quoteData.source}
+        `;
     }
 }
 

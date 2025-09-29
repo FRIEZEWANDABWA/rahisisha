@@ -553,38 +553,93 @@ function initQuoteForm() {
     }
 }
 
-// API Integration for quotes
+// API Integration for quotes using Formspree
 async function submitQuoteToAPI(quoteData) {
     try {
-        // Try Netlify Functions first
-        const response = await fetch('/.netlify/functions/quote', {
+        // Submit to Formspree
+        const response = await fetch('https://formspree.io/f/xzzjekzp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(quoteData)
+            body: JSON.stringify({
+                subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
+                message: formatQuoteForEmail(quoteData),
+                email: quoteData.email,
+                name: quoteData.name || quoteData.fullName,
+                service: quoteData.service || quoteData.serviceType,
+                budget: quoteData.budget || quoteData.budgetRange,
+                details: quoteData.details || quoteData.projectDescription,
+                type: quoteData.type,
+                timestamp: quoteData.timestamp
+            })
         });
         
         if (response.ok) {
-            return await response.json();
+            return {
+                success: true,
+                message: 'Quote request submitted successfully',
+                quoteId: 'QUOTE_' + Date.now()
+            };
         } else {
-            throw new Error('Netlify function failed');
+            throw new Error('Formspree submission failed');
         }
         
     } catch (error) {
-        console.log('Netlify function not available, using fallback method');
-        
-        // Fallback: Log data and simulate success
-        console.log('Quote data:', quoteData);
-        
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        return {
-            success: true,
-            message: 'Quote request received successfully',
-            quoteId: 'QUOTE_' + Date.now()
-        };
+        console.error('Quote submission error:', error);
+        throw error;
+    }
+}
+
+// Format quote data for email
+function formatQuoteForEmail(quoteData) {
+    const isSimple = quoteData.type === 'simple_quote';
+    const customerName = quoteData.name || quoteData.fullName;
+    
+    if (isSimple) {
+        return `
+NEW QUOTE REQUEST - Simple Form
+
+Contact Information:
+- Name: ${customerName}
+- Email: ${quoteData.email}
+
+Project Details:
+- Service: ${quoteData.service}
+- Budget: ${quoteData.budget}
+- Details: ${quoteData.details}
+
+Submitted: ${new Date(quoteData.timestamp).toLocaleString()}
+Source: ${quoteData.source}
+        `;
+    } else {
+        return `
+NEW QUOTE REQUEST - Comprehensive Form
+
+Contact Information:
+- Name: ${quoteData.fullName}
+- Email: ${quoteData.email}
+- Phone: ${quoteData.countryCode} ${quoteData.phone}
+${quoteData.companyName ? `- Company: ${quoteData.companyName}` : ''}
+${quoteData.location ? `- Location: ${quoteData.location}` : ''}
+
+Project Details:
+- Service: ${quoteData.serviceType}
+- Budget: ${quoteData.budgetRange}
+- Timeline: ${quoteData.timeline}
+- Urgency: ${quoteData.urgency}
+- Experience: ${quoteData.experience || 'Not specified'}
+
+Project Description:
+${quoteData.projectDescription}
+
+${quoteData.additionalNotes ? `Additional Notes:
+${quoteData.additionalNotes}
+` : ''}
+Newsletter: ${quoteData.newsletter ? 'Yes' : 'No'}
+Submitted: ${new Date(quoteData.timestamp).toLocaleString()}
+Source: ${quoteData.source}
+        `;
     }
 }
 
