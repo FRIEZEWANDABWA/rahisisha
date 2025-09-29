@@ -650,6 +650,7 @@ async function getBotResponse(message) {
             },
             body: JSON.stringify({
                 message: message,
+                user_id: getSessionId(),
                 sessionId: getSessionId(),
                 timestamp: new Date().toISOString(),
                 source: 'website_chat'
@@ -658,17 +659,22 @@ async function getBotResponse(message) {
         
         console.log('Webhook response status:', response.status);
         
+        const responseText = await response.text();
+        console.log('Raw webhook response:', responseText);
+        
         if (response.ok) {
             const data = await response.json();
             console.log('Webhook response data:', data);
-            return data.reply || data.response || data.message || getFallbackResponse(message);
+            return data.response || data.reply || data.message || getFallbackResponse(message);
         } else {
-            console.log('Webhook failed, using fallback');
+            const errorText = await response.text();
+            console.log('Webhook failed with status:', response.status, 'Error:', errorText);
             throw new Error('Webhook failed');
         }
         
     } catch (error) {
         console.error('Webhook error:', error);
+        console.log('Using fallback response for:', message);
         return getFallbackResponse(message);
     }
 }
@@ -676,16 +682,18 @@ async function getBotResponse(message) {
 function getFallbackResponse(message) {
     const lowerMessage = message.toLowerCase();
     
-    if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
-        return 'Hi! I\'m Rahisisha AI, how can I help you?';
-    } else if (lowerMessage.includes('service')) {
-        return 'We offer Web Development, Mobile Apps, and AI Automation services. Which interests you?';
-    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-        return 'Our pricing is customized for each project. Would you like a free quote?';
-    } else if (lowerMessage.includes('contact')) {
-        return 'You can reach us at hello@rahisishatech.com or +254111546120';
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return 'Hello! I\'m Rahisisha AI. How can I assist you today?';
+    } else if (lowerMessage.includes('service') || lowerMessage.includes('what do you do')) {
+        return 'We offer 3 main services: Web Development, Mobile Apps, and AI Automation. Which one interests you?';
+    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('much')) {
+        return 'Our pricing varies by project. Would you like a free quote? Click "Get Free Quote" above!';
+    } else if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('phone')) {
+        return 'Contact us: Email: hello@rahisishatech.com | WhatsApp: +254111546120';
+    } else if (lowerMessage.includes('quote') || lowerMessage.includes('estimate')) {
+        return 'I can help you get a quote! Click the "Get Free Quote" button to start.';
     } else {
-        return 'I\'m here to help! Ask me about our services, pricing, or contact information.';
+        return 'I\'m here to help! Ask me about our services, pricing, quotes, or contact information.';
     }
 }
 

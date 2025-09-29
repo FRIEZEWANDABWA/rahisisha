@@ -22,10 +22,14 @@ exports.handler = async (event, context) => {
   try {
     // Security: Check origin (allow both domains during setup)
     const origin = event.headers.origin || event.headers.referer;
-    if (origin && !origin.includes('rahisisha.tech') && !origin.includes('rahisisha.netlify.app') && !origin.includes('localhost')) {
+    console.log('Request origin:', origin);
+    if (origin && !origin.includes('rahisisha.tech') && !origin.includes('rahisisha.netlify.app') && !origin.includes('localhost') && !origin.includes('127.0.0.1')) {
       console.log('Blocked origin:', origin);
       return {
         statusCode: 403,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify({ error: 'Forbidden' })
       };
     }
@@ -49,6 +53,8 @@ exports.handler = async (event, context) => {
     // Get webhook URL from environment (NEVER in code)
     const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
     
+    console.log('N8N_WEBHOOK_URL configured:', !!N8N_WEBHOOK_URL);
+    
     if (!N8N_WEBHOOK_URL) {
       console.error('N8N_WEBHOOK_URL not configured');
       return {
@@ -57,7 +63,7 @@ exports.handler = async (event, context) => {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify({ response: 'Service temporarily unavailable - webhook not configured' })
+        body: JSON.stringify({ response: 'Webhook not configured. Using fallback response for: ' + cleanMessage })
       };
     }
 
