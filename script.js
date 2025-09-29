@@ -506,10 +506,8 @@ function initQuoteForm() {
     const quoteForm = document.getElementById('quote-form');
     
     if (quoteForm) {
-        quoteForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(quoteForm);
+        quoteForm.addEventListener('submit', function(e) {
+            // Let the form submit naturally to Formspree
             const submitBtn = quoteForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
@@ -517,38 +515,14 @@ function initQuoteForm() {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
             
-            try {
-                // Prepare data for API
-                const quoteData = {
-                    type: 'simple_quote',
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    service: formData.get('service'),
-                    budget: formData.get('budget'),
-                    details: formData.get('details'),
-                    timestamp: new Date().toISOString(),
-                    source: 'modal'
-                };
-                
-                // Submit to API
-                const response = await submitQuoteToAPI(quoteData);
-                
-                if (response.success) {
-                    showNotification('Quote request submitted successfully! We\'ll contact you within 24 hours.', 'success');
-                    quoteForm.reset();
-                    closeModal(document.getElementById('quote-modal'));
-                } else {
-                    throw new Error(response.message || 'Submission failed');
-                }
-                
-            } catch (error) {
-                console.error('Quote submission error:', error);
-                showNotification('Failed to submit quote request. Please try again or contact us directly.', 'error');
-            } finally {
-                // Reset button
+            // Show notification
+            showNotification('Submitting your quote request...', 'info');
+            
+            // Re-enable button after a delay (in case of errors)
+            setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }
+            }, 5000);
         });
     }
 }
@@ -704,26 +678,34 @@ function validateStep(stepIndex) {
     return true;
 }
 
-// Chatbot
+// Enhanced Chatbot
 function initChatbot() {
     const chatbotTrigger = document.querySelector('.chatbot-trigger');
     const chatbot = document.getElementById('chatbot');
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotMessages = document.getElementById('chatbot-messages');
 
-    // Predefined responses
+    // Enhanced responses with emojis and better formatting
     const responses = {
-        'hello': 'Hi there! How can I help you today?',
-        'hi': 'Hello! What can I do for you?',
-        'services': 'We offer web development, mobile apps, AI automation, digital marketing, and AI training. Which service interests you?',
-        'pricing': 'Our pricing varies based on project requirements. Would you like to schedule a free consultation to discuss your needs?',
-        'contact': 'You can reach us at hello@rahisishatech.com or call +1 (555) 123-4567. We\'re here 24/7!',
-        'about': 'Rahisisha Tech is a forward-thinking technology company that simplifies business operations through AI solutions and modern development.',
-        'portfolio': 'Check out our portfolio section to see our latest projects and success stories!',
-        'demo': 'I\'d be happy to help you schedule a demo! Click the "Book Demo" button to get started.',
-        'quote': 'Ready for a quote? Click the "Get Free Quote" button and we\'ll provide a custom estimate for your project.',
-        'default': 'I\'m here to help! You can ask me about our services, pricing, portfolio, or anything else. Try asking about "services" or "contact".'
+        'hello': '👋 Hi there! I\'m Rahisisha AI, your intelligent assistant. How can I help you today?',
+        'hi': '🙋‍♂️ Hello! I\'m here to help with any questions about our services. What would you like to know?',
+        'services': '🛠️ We offer 3 core services:\n\n1. **Web Design & Development** - Modern, responsive websites\n2. **Mobile & Web Apps** - Cross-platform applications\n3. **AI Automation** - Intelligent business solutions\n\nWhich service interests you most?',
+        'pricing': '💰 Our pricing is customized based on your specific needs:\n\n• **Web Development**: Starting from competitive rates\n• **Mobile Apps**: Cross-platform solutions\n• **AI Automation**: ROI-focused pricing\n\nWould you like a free quote? I can help you get started! 📋',
+        'contact': '📞 **Get in Touch:**\n\n📧 Email: hello@rahisishatech.com\n📱 WhatsApp: +254111546120\n🌐 Website: rahisishatech.com\n\nWe\'re available 24/7 to help! What\'s the best way to reach you?',
+        'about': '🚀 **About Rahisisha Tech:**\n\nWe\'re a cutting-edge technology company revolutionizing business through AI innovation. Our mission is to transform companies with intelligent solutions that drive real results.\n\n✨ 65+ AI Projects Completed\n✨ 99% Client Satisfaction\n✨ 24/7 Support Available',
+        'portfolio': '🎨 **Our Work:**\n\nCheck out our amazing projects! We\'ve helped businesses across Africa transform their operations with:\n\n• E-commerce platforms\n• AI chatbots\n• Mobile applications\n• Marketing campaigns\n\nWant to see specific examples? Visit our Portfolio page! 👀',
+        'demo': '🎬 **Book a Demo:**\n\nI\'d love to show you what we can do! Our demos include:\n\n• Live project walkthrough\n• AI automation examples\n• Q&A session\n• Custom recommendations\n\nShall I help you schedule one? It\'s completely free! 🆓',
+        'quote': '📋 **Get Your Free Quote:**\n\nReady to start your project? I can help you get a detailed quote in 24 hours!\n\n**Quick Quote**: Click "Get Free Quote" for instant form\n**Detailed Quote**: Visit our Quote page for comprehensive planning\n\nWhich option works better for you? 🤔',
+        'ai automation': '🤖 **AI Automation Services:**\n\n• **Intelligent Chatbots** - 24/7 customer support\n• **Process Automation** - Eliminate manual tasks\n• **Data Analysis** - Smart business insights\n• **Machine Learning** - Predictive analytics\n\n**ROI**: 70% time savings, 45% cost reduction, 300% productivity boost!\n\nInterested in automating your business? 🚀',
+        'web development': '💻 **Web Development:**\n\n• **Responsive Design** - Perfect on all devices\n• **SEO Optimized** - Better search rankings\n• **Fast Loading** - Optimized performance\n• **CMS Integration** - Easy content management\n\nNeed a website that converts visitors to customers? Let\'s chat! 💬',
+        'mobile app': '📱 **Mobile App Development:**\n\n• **Cross-Platform** - iOS & Android\n• **Native Performance** - Smooth experience\n• **Offline Functionality** - Works anywhere\n• **Push Notifications** - Engage users\n• **App Store Optimization** - Better visibility\n\nReady to reach customers on mobile? 🎯',
+        'default': '🤔 I\'m not sure about that, but I\'m here to help! Try asking about:\n\n• **"services"** - Our offerings\n• **"pricing"** - Cost information\n• **"contact"** - Get in touch\n• **"quote"** - Free estimates\n• **"demo"** - Live walkthrough\n\nWhat would you like to know? 😊'
     };
+
+    // Initialize enhanced features
+    initVoiceInput();
+    initTypingIndicator();
+    updateChatbotNotification();
 
     if (chatbotInput) {
         chatbotInput.addEventListener('keypress', (e) => {
@@ -732,17 +714,47 @@ function initChatbot() {
                 sendMessage();
             }
         });
+
+        // Show suggestions when input is focused
+        chatbotInput.addEventListener('focus', () => {
+            showSuggestions();
+        });
+    }
+
+    // Auto-scroll to bottom
+    if (chatbotMessages) {
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 }
 
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
+    const trigger = document.querySelector('.chatbot-trigger');
+    const notification = document.getElementById('chatbot-notification');
+    
     chatbot.classList.toggle('active');
+    trigger.classList.toggle('active');
+    
+    if (chatbot.classList.contains('active')) {
+        // Hide notification when opened
+        if (notification) {
+            notification.style.display = 'none';
+        }
+        // Focus input
+        setTimeout(() => {
+            const input = document.getElementById('chatbot-input');
+            if (input) input.focus();
+        }, 300);
+    }
+}
+
+function minimizeChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.classList.toggle('minimized');
 }
 
 async function sendMessage() {
     const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotMessages = document.getElementById('chatbot-messages');
     const message = chatbotInput.value.trim();
     
     if (!message) return;
@@ -751,18 +763,33 @@ async function sendMessage() {
     addMessage(message, 'user');
     chatbotInput.value = '';
     
+    // Hide suggestions
+    hideSuggestions();
+    
     // Show typing indicator
-    addTypingIndicator();
+    showTypingIndicator();
     
     try {
-        // Get response from webhook
-        const response = await getBotResponse(message);
-        removeTypingIndicator();
-        addMessage(response, 'bot');
+        // Get response with delay for realism
+        setTimeout(async () => {
+            const response = await getBotResponse(message);
+            hideTypingIndicator();
+            addMessage(response, 'bot');
+            
+            // Show suggestions after bot response
+            setTimeout(showSuggestions, 1000);
+        }, 1000 + Math.random() * 1000); // 1-2 second delay
+        
     } catch (error) {
-        removeTypingIndicator();
-        addMessage('Sorry, I\'m having trouble right now. Please try again.', 'bot');
+        hideTypingIndicator();
+        addMessage('Sorry, I\'m having trouble right now. Please try again later. 😔', 'bot');
     }
+}
+
+function sendQuickMessage(message) {
+    const chatbotInput = document.getElementById('chatbot-input');
+    chatbotInput.value = message;
+    sendMessage();
 }
 
 function addTypingIndicator() {
@@ -787,12 +814,37 @@ function addMessage(message, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
     
+    // Create message structure
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    
     const messageP = document.createElement('p');
-    messageP.textContent = message; // Use textContent instead of innerHTML
-    messageDiv.appendChild(messageP);
+    // Convert markdown-like formatting to HTML
+    const formattedMessage = message
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+    messageP.innerHTML = formattedMessage;
+    
+    const time = document.createElement('div');
+    time.className = 'message-time';
+    time.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    
+    content.appendChild(messageP);
+    content.appendChild(time);
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(content);
     
     chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    
+    // Smooth scroll to bottom
+    setTimeout(() => {
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }, 100);
 }
 
 async function getBotResponse(message) {
@@ -825,26 +877,7 @@ async function getBotResponse(message) {
     }
 }
 
-function getFallbackResponse(message) {
-    const fallbacks = {
-        'hello': 'Hi! I\'m Rahisisha AI. How can I help you today?',
-        'hi': 'Hello! I\'m Rahisisha AI, here to assist you.',
-        'services': 'We offer 5 core services: Web Development ($150+), Mobile Apps ($500+), AI Automation ($200+), Digital Marketing ($500/month), and AI Training ($100+).',
-        'pricing': 'Our pricing: Web Development starts at $150, Mobile Apps at $500, AI Automation at $200, Digital Marketing at $500/month, AI Training at $100.',
-        'contact': 'You can reach us at hello@rahisishatech.com, call +254111546120, or WhatsApp us directly!',
-        'demo': 'I\'d be happy to help you schedule a demo! What service interests you most?',
-        'quote': 'Ready for a quote? What type of project are you planning?',
-        'default': 'I\'m Rahisisha AI! Ask me about our services, pricing, contact info, or to schedule a demo. How can I help?'
-    };
-    
-    const lowerMessage = message.toLowerCase();
-    for (let key in fallbacks) {
-        if (lowerMessage.includes(key)) {
-            return fallbacks[key];
-        }
-    }
-    return fallbacks.default;
-}
+
 
 function getSessionId() {
     let sessionId = localStorage.getItem('chatSessionId');
@@ -1316,11 +1349,113 @@ function initROICalculator() {
     });
 }
 
+// New Chatbot Functions
+function showTypingIndicator() {
+    const typingDiv = document.getElementById('chatbot-typing');
+    if (typingDiv) {
+        typingDiv.style.display = 'flex';
+    }
+}
+
+function hideTypingIndicator() {
+    const typingDiv = document.getElementById('chatbot-typing');
+    if (typingDiv) {
+        typingDiv.style.display = 'none';
+    }
+}
+
+function showSuggestions() {
+    const suggestions = document.getElementById('chatbot-suggestions');
+    if (suggestions) {
+        suggestions.style.display = 'flex';
+    }
+}
+
+function hideSuggestions() {
+    const suggestions = document.getElementById('chatbot-suggestions');
+    if (suggestions) {
+        suggestions.style.display = 'none';
+    }
+}
+
+function updateChatbotNotification() {
+    const notification = document.getElementById('chatbot-notification');
+    if (notification) {
+        // Show notification for new users
+        const hasVisited = localStorage.getItem('chatbot_visited');
+        if (!hasVisited) {
+            notification.style.display = 'flex';
+            localStorage.setItem('chatbot_visited', 'true');
+        } else {
+            notification.style.display = 'none';
+        }
+    }
+}
+
+function initVoiceInput() {
+    // Voice input functionality (placeholder)
+    window.toggleVoiceInput = function() {
+        const voiceBtn = document.querySelector('.voice-btn');
+        if (voiceBtn) {
+            voiceBtn.classList.toggle('recording');
+            // Voice recognition would be implemented here
+            showNotification('Voice input feature coming soon! 🎤', 'info');
+        }
+    };
+}
+
+function initTypingIndicator() {
+    // Enhanced typing indicator with realistic delays
+}
+
+function showAttachmentOptions() {
+    showNotification('File attachment feature coming soon! 📎', 'info');
+}
+
+// Enhanced bot response with better AI-like responses
+async function getBotResponse(message) {
+    const responses = {
+        'hello': '👋 Hi there! I\'m Rahisisha AI, your intelligent assistant. How can I help you today?',
+        'hi': '🙋♂️ Hello! I\'m here to help with any questions about our services. What would you like to know?',
+        'services': '🛠️ **Our Services:**\n\n1. **Web Design & Development** - Modern, responsive websites\n2. **Mobile & Web Apps** - Cross-platform applications\n3. **AI Automation** - Intelligent business solutions\n\nWhich service interests you most?',
+        'pricing': '💰 **Pricing Information:**\n\nOur pricing is customized based on your specific needs. We offer competitive rates for all services.\n\nWould you like a **free quote**? I can help you get started! 📋',
+        'contact': '📞 **Get in Touch:**\n\n📧 Email: hello@rahisishatech.com\n📱 WhatsApp: +254111546120\n🌐 Website: rahisishatech.com\n\nWe\'re available 24/7 to help!',
+        'about': '🚀 **About Rahisisha Tech:**\n\nWe\'re revolutionizing business through AI innovation!\n\n✨ 65+ AI Projects Completed\n✨ 99% Client Satisfaction\n✨ 24/7 Support Available',
+        'quote': '📋 **Get Your Free Quote:**\n\nReady to start your project? I can help you get a detailed quote in 24 hours!\n\nClick "Get Free Quote" to begin! 🚀',
+        'ai automation': '🤖 **AI Automation:**\n\n• 70% time savings\n• 45% cost reduction\n• 300% productivity boost\n\nInterested in automating your business?',
+        'web development': '💻 **Web Development:**\n\nModern, responsive websites that convert visitors to customers.\n\nNeed a website? Let\'s chat!',
+        'mobile app': '📱 **Mobile Apps:**\n\nCross-platform apps for iOS & Android.\n\nReady to reach customers on mobile?',
+        'default': '🤔 I\'m here to help! Try asking about:\n\n• **"services"** - Our offerings\n• **"pricing"** - Cost information\n• **"contact"** - Get in touch\n• **"quote"** - Free estimates\n\nWhat would you like to know? 😊'
+    };
+    
+    const lowerMessage = message.toLowerCase();
+    
+    // Smart keyword matching
+    for (let key in responses) {
+        if (lowerMessage.includes(key) || 
+            (key === 'services' && (lowerMessage.includes('service') || lowerMessage.includes('offer'))) ||
+            (key === 'pricing' && (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('much'))) ||
+            (key === 'contact' && (lowerMessage.includes('reach') || lowerMessage.includes('phone') || lowerMessage.includes('email'))) ||
+            (key === 'quote' && (lowerMessage.includes('estimate') || lowerMessage.includes('proposal'))) ||
+            (key === 'ai automation' && (lowerMessage.includes('automation') || lowerMessage.includes('ai'))) ||
+            (key === 'web development' && (lowerMessage.includes('website') || lowerMessage.includes('web'))) ||
+            (key === 'mobile app' && (lowerMessage.includes('app') || lowerMessage.includes('mobile')))) {
+            return responses[key];
+        }
+    }
+    
+    return responses.default;
+}
+
 // Export functions for global access
 window.openQuoteModal = openQuoteModal;
 window.openDemoModal = openDemoModal;
 window.toggleChatbot = toggleChatbot;
+window.minimizeChatbot = minimizeChatbot;
 window.sendMessage = sendMessage;
+window.sendQuickMessage = sendQuickMessage;
+window.toggleVoiceInput = toggleVoiceInput;
+window.showAttachmentOptions = showAttachmentOptions;
 window.acceptCookies = acceptCookies;
 window.declineCookies = declineCookies;
 window.closeAIWelcome = closeAIWelcome;

@@ -86,7 +86,9 @@
                 </div>
 
                 <!-- Quote Form -->
-                <form id="comprehensive-quote-form" class="comprehensive-quote-form">
+                <form id="comprehensive-quote-form" class="comprehensive-quote-form" action="https://formspree.io/f/xzzjekzp" method="POST">
+                    <input type="hidden" name="_subject" value="Comprehensive Quote Request from Website">
+                    <input type="hidden" name="form_type" value="comprehensive_quote">
                     <!-- Step 1: Contact Information -->
                     <div class="form-step active" data-step="1">
                         <h3>Contact Information</h3>
@@ -94,7 +96,7 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" id="full-name" name="fullName" required>
+                                <input type="text" id="full-name" name="name" required>
                                 <label for="full-name">Full Name *</label>
                             </div>
                             <div class="form-group">
@@ -129,28 +131,28 @@
                         <p>Tell us about your project requirements</p>
                         
                         <div class="form-group">
-                            <select id="service-type" name="serviceType" required>
+                            <select id="service-type" name="service" required>
                                 <option value="">Select Service Type *</option>
-                                <option value="web-development">Web Design and Development</option>
-                                <option value="app-development">Mobile and Web Application Development</option>
-                                <option value="ai-automation">AI Automation Services</option>
+                                <option value="Web Design and Development">Web Design and Development</option>
+                                <option value="Mobile and Web Application Development">Mobile and Web Application Development</option>
+                                <option value="AI Automation Services">AI Automation Services</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <textarea id="project-description" name="projectDescription" rows="4" required></textarea>
+                            <textarea id="project-description" name="message" rows="4" required placeholder="Describe your project in detail..."></textarea>
                             <label for="project-description">Project Description *</label>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <select id="budget-range" name="budgetRange" required>
+                                <select id="budget-range" name="budget" required>
                                     <option value="">Budget Range *</option>
-                                    <option value="100-500">$100 - $500</option>
-                                    <option value="500-1000">$500 - $1,000</option>
-                                    <option value="1000-2500">$1,000 - $2,500</option>
-                                    <option value="2500-5000">$2,500 - $5,000</option>
-                                    <option value="5000+">$5,000+</option>
+                                    <option value="$100 - $500">$100 - $500</option>
+                                    <option value="$500 - $1,000">$500 - $1,000</option>
+                                    <option value="$1,000 - $2,500">$1,000 - $2,500</option>
+                                    <option value="$2,500 - $5,000">$2,500 - $5,000</option>
+                                    <option value="$5,000+">$5,000+</option>
                                 </select>
                             </div>
                             <div class="form-group">

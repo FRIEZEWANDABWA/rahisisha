@@ -228,26 +228,73 @@
     <!-- Rahisisha AI Chatbot -->
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
-            <h4>Rahisisha AI</h4>
-            <button class="chatbot-toggle" onclick="toggleChatbot()">
-                <i class="fas fa-times"></i>
-            </button>
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h4>Rahisisha AI</h4>
+                <span class="chatbot-status online">Online</span>
+            </div>
+            <div class="chatbot-actions">
+                <button class="chatbot-minimize" onclick="minimizeChatbot()">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="chatbot-toggle" onclick="toggleChatbot()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
         <div class="chatbot-messages" id="chatbot-messages">
             <div class="message bot-message">
-                <p>Hi, How can I help you today?</p>
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>👋 Hi! I'm Rahisisha AI, your intelligent assistant.</p>
+                    <p>I can help you with:</p>
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="sendQuickMessage('Tell me about your services')">🛠️ Services</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('What are your prices?')">💰 Pricing</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('I want a quote')">📋 Get Quote</button>
+                        <button class="quick-btn" onclick="sendQuickMessage('Contact information')">📞 Contact</button>
+                    </div>
+                </div>
+                <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
             </div>
         </div>
+        <div class="chatbot-typing" id="chatbot-typing" style="display: none;">
+            <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span>Rahisisha AI is typing...</span>
+        </div>
         <div class="chatbot-input">
+            <button class="attachment-btn" onclick="showAttachmentOptions()">
+                <i class="fas fa-paperclip"></i>
+            </button>
             <input type="text" id="chatbot-input" placeholder="Type your message...">
+            <button class="voice-btn" onclick="toggleVoiceInput()">
+                <i class="fas fa-microphone"></i>
+            </button>
             <button onclick="sendMessage()">
                 <i class="fas fa-paper-plane"></i>
             </button>
         </div>
+        <div class="chatbot-suggestions" id="chatbot-suggestions">
+            <div class="suggestion-chip" onclick="sendQuickMessage('How much does a website cost?')">Website pricing</div>
+            <div class="suggestion-chip" onclick="sendQuickMessage('Do you offer mobile app development?')">Mobile apps</div>
+            <div class="suggestion-chip" onclick="sendQuickMessage('What is AI automation?')">AI automation</div>
+        </div>
     </div>
 
     <div class="chatbot-trigger" onclick="toggleChatbot()">
-        <i class="fas fa-robot"></i>
+        <div class="trigger-icon">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="trigger-notification" id="chatbot-notification">1</div>
+        <div class="trigger-pulse"></div>
     </div>
 
     <!-- Rahisisha AI Welcome Popup -->
@@ -257,7 +304,12 @@
                 <i class="fas fa-robot"></i>
             </div>
             <div class="ai-message">
-                <p>Hi, How can I help you today?</p>
+                <p>👋 Hi! I'm your AI assistant.</p>
+                <p>Need help with services, pricing, or have questions?</p>
+                <div class="welcome-actions">
+                    <button class="btn-small btn-primary" onclick="toggleChatbot(); closeAIWelcome();">Chat Now</button>
+                    <button class="btn-small btn-outline" onclick="closeAIWelcome()">Maybe Later</button>
+                </div>
             </div>
             <button class="ai-close" onclick="closeAIWelcome()">
                 <i class="fas fa-times"></i>
@@ -274,7 +326,11 @@
                 <p>Tell us about your project and we'll provide a custom quote within 24 hours</p>
             </div>
             
-            <form id="quote-form" class="quote-form">
+            <form id="quote-form" class="quote-form" action="https://formspree.io/f/xzzjekzp" method="POST">
+                <input type="hidden" name="_subject" value="New Quote Request from Website">
+                <input type="hidden" name="_next" value="#">
+                <input type="hidden" name="form_type" value="simple_quote">
+                
                 <div class="form-row">
                     <div class="form-group">
                         <input type="text" id="quote-name" name="name" required>
@@ -289,24 +345,24 @@
                 <div class="form-group">
                     <select id="quote-service" name="service" required>
                         <option value="">Select Service *</option>
-                        <option value="web-development">Web Design and Development</option>
-                        <option value="app-development">Mobile and Web Application Development</option>
-                        <option value="ai-automation">AI Automation Services</option>
+                        <option value="Web Design and Development">Web Design and Development</option>
+                        <option value="Mobile and Web Application Development">Mobile and Web Application Development</option>
+                        <option value="AI Automation Services">AI Automation Services</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <select id="quote-budget" name="budget" required>
                         <option value="">Select Budget Range *</option>
-                        <option value="100-500">$100 - $500</option>
-                        <option value="500-1000">$500 - $1,000</option>
-                        <option value="1000-2500">$1,000 - $2,500</option>
-                        <option value="2500+">$2,500+</option>
+                        <option value="$100 - $500">$100 - $500</option>
+                        <option value="$500 - $1,000">$500 - $1,000</option>
+                        <option value="$1,000 - $2,500">$1,000 - $2,500</option>
+                        <option value="$2,500+">$2,500+</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <textarea id="quote-details" name="details" rows="4" required></textarea>
+                    <textarea id="quote-details" name="message" rows="4" required placeholder="Tell us about your project requirements..."></textarea>
                     <label for="quote-details">Project Details *</label>
                 </div>
                 
