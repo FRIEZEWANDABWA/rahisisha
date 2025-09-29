@@ -555,34 +555,49 @@ function initQuoteForm() {
 
 // API Integration for quotes using Formspree
 async function submitQuoteToAPI(quoteData) {
+    console.log('Submitting quote to Formspree:', quoteData);
+    
     try {
+        const formData = {
+            subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
+            message: formatQuoteForEmail(quoteData),
+            email: quoteData.email,
+            name: quoteData.name || quoteData.fullName,
+            service: quoteData.service || quoteData.serviceType,
+            budget: quoteData.budget || quoteData.budgetRange,
+            details: quoteData.details || quoteData.projectDescription,
+            type: quoteData.type,
+            timestamp: quoteData.timestamp,
+            _replyto: quoteData.email,
+            _subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`
+        };
+        
+        console.log('Formspree payload:', formData);
+        
         // Submit to Formspree
         const response = await fetch('https://formspree.io/f/xzzjekzp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: JSON.stringify({
-                subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
-                message: formatQuoteForEmail(quoteData),
-                email: quoteData.email,
-                name: quoteData.name || quoteData.fullName,
-                service: quoteData.service || quoteData.serviceType,
-                budget: quoteData.budget || quoteData.budgetRange,
-                details: quoteData.details || quoteData.projectDescription,
-                type: quoteData.type,
-                timestamp: quoteData.timestamp
-            })
+            body: JSON.stringify(formData)
         });
         
+        console.log('Formspree response status:', response.status);
+        
         if (response.ok) {
+            const result = await response.json();
+            console.log('Formspree success:', result);
             return {
                 success: true,
                 message: 'Quote request submitted successfully',
                 quoteId: 'QUOTE_' + Date.now()
             };
         } else {
-            throw new Error('Formspree submission failed');
+            const errorData = await response.text();
+            console.error('Formspree error response:', errorData);
+            throw new Error(`Formspree submission failed: ${response.status}`);
         }
         
     } catch (error) {

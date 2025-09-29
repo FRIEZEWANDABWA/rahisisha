@@ -283,37 +283,52 @@ async function handleComprehensiveQuoteSubmission(form) {
 
 // API Integration using Formspree
 async function submitQuoteToAPI(quoteData) {
+    console.log('Submitting comprehensive quote to Formspree:', quoteData);
+    
     try {
+        const formData = {
+            subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
+            message: formatQuoteForEmail(quoteData),
+            email: quoteData.email,
+            name: quoteData.name || quoteData.fullName,
+            service: quoteData.service || quoteData.serviceType,
+            budget: quoteData.budget || quoteData.budgetRange,
+            phone: quoteData.phone ? `${quoteData.countryCode} ${quoteData.phone}` : '',
+            company: quoteData.companyName || '',
+            timeline: quoteData.timeline || '',
+            urgency: quoteData.urgency || '',
+            type: quoteData.type,
+            timestamp: quoteData.timestamp,
+            _replyto: quoteData.email,
+            _subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`
+        };
+        
+        console.log('Formspree payload:', formData);
+        
         // Submit to Formspree
         const response = await fetch('https://formspree.io/f/xzzjekzp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
-            body: JSON.stringify({
-                subject: `New Quote Request from ${quoteData.name || quoteData.fullName}`,
-                message: formatQuoteForEmail(quoteData),
-                email: quoteData.email,
-                name: quoteData.name || quoteData.fullName,
-                service: quoteData.service || quoteData.serviceType,
-                budget: quoteData.budget || quoteData.budgetRange,
-                phone: quoteData.phone ? `${quoteData.countryCode} ${quoteData.phone}` : '',
-                company: quoteData.companyName || '',
-                timeline: quoteData.timeline || '',
-                urgency: quoteData.urgency || '',
-                type: quoteData.type,
-                timestamp: quoteData.timestamp
-            })
+            body: JSON.stringify(formData)
         });
         
+        console.log('Formspree response status:', response.status);
+        
         if (response.ok) {
+            const result = await response.json();
+            console.log('Formspree success:', result);
             return {
                 success: true,
                 message: 'Quote request submitted successfully',
                 quoteId: 'QUOTE_' + Date.now()
             };
         } else {
-            throw new Error('Formspree submission failed');
+            const errorData = await response.text();
+            console.error('Formspree error response:', errorData);
+            throw new Error(`Formspree submission failed: ${response.status}`);
         }
         
     } catch (error) {
@@ -494,6 +509,29 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// Test function to verify Formspree integration
+window.testFormspree = async function() {
+    const testData = {
+        type: 'test_quote',
+        name: 'Test User',
+        email: 'test@example.com',
+        service: 'web-development',
+        budget: '500-1000',
+        details: 'This is a test submission to verify Formspree integration',
+        timestamp: new Date().toISOString(),
+        source: 'test'
+    };
+    
+    try {
+        const result = await submitQuoteToAPI(testData);
+        console.log('Test result:', result);
+        alert('Test successful! Check console for details.');
+    } catch (error) {
+        console.error('Test failed:', error);
+        alert('Test failed! Check console for details.');
+    }
+};
 
 // Export functions for global access
 window.handleSimpleQuoteSubmission = handleSimpleQuoteSubmission;
