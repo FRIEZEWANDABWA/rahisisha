@@ -8,7 +8,9 @@
     "build": "exit 0",
     "deploy": "netlify deploy --prod"
   },
-  "dependencies": {},
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
   "devDependencies": {
     "netlify-cli": "^17.0.0"
   }
