@@ -123,13 +123,13 @@
 
 
                     <div class="service-actions">
-                        <a href="quote.html" class="btn btn-primary">
+                        <button class="btn btn-primary" onclick="openQuoteModal()">
                             <i class="fas fa-calculator"></i>
-                            Get Quote
-                        </a>
-                        <a href="portfolio.html" class="btn btn-outline">
-                            <i class="fas fa-eye"></i>
-                            View Case Studies
+                            Quick Quote
+                        </button>
+                        <a href="quote.html?service=web-development" class="btn btn-outline">
+                            <i class="fas fa-file-alt"></i>
+                            Detailed Quote
                         </a>
                     </div>
                 </div>
@@ -184,13 +184,13 @@
 
 
                     <div class="service-actions">
-                        <a href="quote.html" class="btn btn-primary">
+                        <button class="btn btn-primary" onclick="openQuoteModal()">
                             <i class="fas fa-calculator"></i>
-                            Get Quote
-                        </a>
-                        <a href="portfolio.html" class="btn btn-outline">
-                            <i class="fas fa-eye"></i>
-                            View Case Studies
+                            Quick Quote
+                        </button>
+                        <a href="quote.html?service=app-development" class="btn btn-outline">
+                            <i class="fas fa-file-alt"></i>
+                            Detailed Quote
                         </a>
                     </div>
                 </div>
@@ -254,13 +254,13 @@
 
 
                     <div class="service-actions">
-                        <a href="quote.html" class="btn btn-primary">
+                        <button class="btn btn-primary" onclick="openQuoteModal()">
                             <i class="fas fa-calculator"></i>
-                            Get Quote
-                        </a>
-                        <a href="portfolio.html" class="btn btn-outline">
-                            <i class="fas fa-eye"></i>
-                            View Case Studies
+                            Quick Quote
+                        </button>
+                        <a href="quote.html?service=ai-automation" class="btn btn-outline">
+                            <i class="fas fa-file-alt"></i>
+                            Detailed Quote
                         </a>
                     </div>
                 </div>
@@ -430,6 +430,62 @@
         <a href="https://wa.me/254111546120" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i>
         </a>
+    </div>
+
+    <!-- Quote Modal -->
+    <div id="quote-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal(document.getElementById('quote-modal'))">&times;</span>
+            <div class="modal-header">
+                <h2>Get Your Free Quote</h2>
+                <p>Tell us about your project and we'll provide a custom quote within 24 hours</p>
+            </div>
+            
+            <form id="quote-form" class="quote-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="quote-name" name="name" required>
+                        <label for="quote-name">Full Name *</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="quote-email" name="email" required>
+                        <label for="quote-email">Email Address *</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <select id="quote-service" name="service" required>
+                        <option value="">Select Service *</option>
+                        <option value="web-development">Web Design and Development</option>
+                        <option value="app-development">Mobile and Web Application Development</option>
+                        <option value="ai-automation">AI Automation Services</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <select id="quote-budget" name="budget" required>
+                        <option value="">Select Budget Range *</option>
+                        <option value="100-500">$100 - $500</option>
+                        <option value="500-1000">$500 - $1,000</option>
+                        <option value="1000-2500">$1,000 - $2,500</option>
+                        <option value="2500+">$2,500+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="quote-details" name="details" rows="4" required></textarea>
+                    <label for="quote-details">Project Details *</label>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-outline" onclick="closeModal(document.getElementById('quote-modal'))">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Quote Request
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Scripts -->
