@@ -159,6 +159,31 @@ section.visible {
     content: "\f1d8";
 }
 
+/* SVG Icon Styles */
+.theme-toggle svg,
+.chatbot-trigger svg,
+.chatbot-actions svg {
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: scale(1.1);
+}
+
+.chatbot-actions button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.chatbot-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--primary-color);
