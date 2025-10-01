@@ -118,6 +118,47 @@ section.visible {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Icon fallbacks */
+.fas, .fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
+    font-weight: 900;
+}
+
+/* Ensure icons display properly */
+.theme-toggle i::before,
+.chatbot-trigger i::before,
+.chatbot-close i::before,
+.chatbot-minimize i::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+/* Theme toggle icon fix */
+.theme-toggle .fa-moon::before {
+    content: "\f186";
+}
+
+.theme-toggle .fa-sun::before {
+    content: "\f185";
+}
+
+/* Chatbot icons fix */
+.fa-robot::before {
+    content: "\f544";
+}
+
+.fa-times::before {
+    content: "\f00d";
+}
+
+.fa-minus::before {
+    content: "\f068";
+}
+
+.fa-paper-plane::before {
+    content: "\f1d8";
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--primary-color);
