@@ -47,10 +47,10 @@ exports.handler = async (event, context) => {
     // Sanitize message (basic)
     const cleanMessage = message.replace(/<script[^>]*>.*?<\/script>/gi, '').trim();
     
-    // Rate limiting
+    // Basic client info
     const clientIP = event.headers['client-ip'] || event.headers['x-forwarded-for'] || 'unknown';
     
-    // Get webhook URL from environment (NEVER in code)
+    // Get webhook URL from environment
     const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
     
     console.log('N8N_WEBHOOK_URL configured:', !!N8N_WEBHOOK_URL);
@@ -63,44 +63,26 @@ exports.handler = async (event, context) => {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify({ response: 'Webhook not configured. Using fallback response for: ' + cleanMessage })
-      };
-    }
-
-    // Security: Validate webhook URL domain
-    if (!N8N_WEBHOOK_URL.includes('n8n.rahisisha.tech')) {
-      console.error('Invalid webhook URL domain');
-      return {
-        statusCode: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify({ response: 'Service configuration error' })
+        body: JSON.stringify({ response: 'Hi! I\'m Rahisisha AI. How can I help you today?' })
       };
     }
 
     console.log('Calling webhook:', N8N_WEBHOOK_URL ? 'URL configured' : 'URL missing');
     console.log('Message payload:', { message: cleanMessage, user_id: user_id || 'anonymous' });
 
-    // Call your n8n webhook with timeout
+    // Call n8n webhook (simple version)
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Rahisisha-Chatbot/1.0',
-        'X-Source': 'rahisisha-website',
-        'X-Client-IP': clientIP
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         message: cleanMessage,
-        sessionId: user_id || 'anonymous',
-        user_id: user_id || 'anonymous',
-        timestamp: new Date().toISOString(),
-        source: 'website_chat'
+        sessionId: user_id || `session_${Date.now()}`,
+        timestamp: new Date().toISOString()
       }),
       signal: controller.signal
     });

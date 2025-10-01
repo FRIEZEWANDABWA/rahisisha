@@ -1,6 +1,59 @@
 // Initialize GSAP
 gsap.registerPlugin(ScrollTrigger);
 
+// Page Transition System
+class PageTransition {
+    constructor() {
+        this.overlay = document.getElementById('page-transition');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('load', () => {
+            this.hideTransition();
+        });
+        this.addTransitionToLinks();
+    }
+
+    addTransitionToLinks() {
+        const links = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([href^="http"]):not([target="_blank"]):not([onclick])');
+        
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.includes('://') && href.endsWith('.html')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.navigateWithTransition(href);
+                });
+            }
+        });
+    }
+
+    showTransition() {
+        if (this.overlay) {
+            this.overlay.classList.add('active');
+        }
+    }
+
+    hideTransition() {
+        if (this.overlay) {
+            setTimeout(() => {
+                this.overlay.classList.remove('active');
+            }, 100);
+        }
+    }
+
+    navigateWithTransition(url) {
+        this.showTransition();
+        setTimeout(() => {
+            window.location.href = url;
+        }, 150);
+    }
+}
+
+// Initialize page transitions
+const pageTransition = new PageTransition();
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeWebsite();

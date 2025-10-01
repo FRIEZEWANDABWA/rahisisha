@@ -1,9 +1,109 @@
 // Initialize GSAP
 gsap.registerPlugin(ScrollTrigger);
 
+// Page Transition System
+class PageTransition {
+    constructor() {
+        this.overlay = document.getElementById('page-transition');
+        this.init();
+    }
+
+    init() {
+        // Hide transition overlay on page load
+        window.addEventListener('load', () => {
+            this.hideTransition();
+        });
+
+        // Add smooth transitions to all internal links
+        this.addTransitionToLinks();
+    }
+
+    addTransitionToLinks() {
+        const links = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([href^="http"]):not([target="_blank"]):not([onclick])');
+        
+        links.forEach(link => {
+            // Only add transition to same-domain links
+            const href = link.getAttribute('href');
+            if (href && !href.includes('://') && href.endsWith('.html')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.navigateWithTransition(href);
+                });
+            }
+        });
+    }
+
+    showTransition() {
+        if (this.overlay) {
+            this.overlay.classList.add('active');
+        }
+    }
+
+    hideTransition() {
+        if (this.overlay) {
+            setTimeout(() => {
+                this.overlay.classList.remove('active');
+            }, 100);
+        }
+    }
+
+    navigateWithTransition(url) {
+        this.showTransition();
+        setTimeout(() => {
+            window.location.href = url;
+        }, 150);
+    }
+}
+
+// Initialize page transitions
+const pageTransition = new PageTransition();
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeWebsite();
+    initSmoothScrolling();
+});
+
+// Smooth scrolling for anchor links
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 80; // Account for navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Section visibility observer for smooth animations
+function initSectionAnimations() {
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Initialize section animations
+document.addEventListener('DOMContentLoaded', function() {
+    initSectionAnimations();
 });
 
 function initializeWebsite() {
