@@ -762,7 +762,14 @@ async function getBotResponse(message) {
         if (response.ok) {
             const data = await response.json();
             console.log('Webhook response data:', data);
-            return data.response || data.reply || data.message || getFallbackResponse(message);
+            console.log('Extracted response:', data.response);
+            
+            if (data.response) {
+                return data.response;
+            } else {
+                console.log('No response field found, using fallback');
+                return getFallbackResponse(message);
+            }
         } else {
             const errorText = await response.text();
             console.log('Webhook failed with status:', response.status, 'Error:', errorText);
