@@ -759,9 +759,6 @@ async function getBotResponse(message) {
         
         console.log('Webhook response status:', response.status);
         
-        const responseText = await response.text();
-        console.log('Raw webhook response:', responseText);
-        
         if (response.ok) {
             const data = await response.json();
             console.log('Webhook response data:', data);
