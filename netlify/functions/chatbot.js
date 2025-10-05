@@ -100,12 +100,13 @@ exports.handler = async (event, context) => {
     let botResponse = 'I\'m here to help! What can I do for you?';
     
     if (data) {
-      // Try different possible response fields
-      botResponse = data.response || 
+      // Try different possible response fields (output first since that's what N8N is sending)
+      botResponse = data.output || 
+                   data.response || 
                    data.reply || 
                    data.message || 
-                   data.text || 
-                   data.output ||
+                   data.text ||
+                   (data.body && data.body.output) ||
                    (data.body && data.body.response) ||
                    (data.body && data.body.message) ||
                    (typeof data === 'string' ? data : botResponse);
