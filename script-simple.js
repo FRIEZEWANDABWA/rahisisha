@@ -106,6 +106,29 @@ document.addEventListener('DOMContentLoaded', function() {
     initSectionAnimations();
 });
 
+// Typing indicator functions
+function addTypingIndicator() {
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message typing-indicator';
+    typingDiv.id = 'typing-indicator';
+    
+    const content = document.createElement('div');
+    content.className = 'message-content';
+    content.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+    
+    typingDiv.appendChild(content);
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
 function initializeWebsite() {
     // Initialize all components
     initParticles();
@@ -705,14 +728,18 @@ async function sendMessage() {
     addMessage(message, 'user');
     chatbotInput.value = '';
     
+    // Show typing indicator
+    addTypingIndicator();
+    
     try {
-        // Test webhook first, then fallback to local responses
         const response = await getBotResponse(message);
+        removeTypingIndicator();
         addMessage(response, 'bot');
         
     } catch (error) {
+        removeTypingIndicator();
         console.error('Chatbot error:', error);
-        addMessage('Sorry, I\'m having trouble right now. Please try again later.', 'bot');
+        addMessage('Sorry, I\'m having trouble right now. Please try again.', 'bot');
     }
 }
 
@@ -740,9 +767,6 @@ function addMessage(message, sender) {
 
 async function getBotResponse(message) {
     try {
-        console.log('Testing webhook with message:', message);
-        
-        // Test webhook endpoint
         const response = await fetch('/.netlify/functions/chatbot', {
             method: 'POST',
             headers: {
@@ -750,36 +774,21 @@ async function getBotResponse(message) {
             },
             body: JSON.stringify({
                 message: message,
-                user_id: getSessionId(),
-                sessionId: getSessionId(),
-                timestamp: new Date().toISOString(),
-                source: 'website_chat'
+                user_id: getSessionId()
             })
         });
         
-        console.log('Webhook response status:', response.status);
-        
         if (response.ok) {
             const data = await response.json();
-            console.log('Webhook response data:', data);
-            console.log('Extracted response:', data.response);
-            
-            if (data.response) {
-                return data.response;
-            } else {
-                console.log('No response field found, using fallback');
-                return getFallbackResponse(message);
-            }
-        } else {
-            const errorText = await response.text();
-            console.log('Webhook failed with status:', response.status, 'Error:', errorText);
-            throw new Error('Webhook failed');
+            console.log('Response from Netlify:', data);
+            return data.response || 'Hi! How can I help you today?';
         }
         
+        throw new Error('Network error');
+        
     } catch (error) {
-        console.error('Webhook error:', error);
-        console.log('Using fallback response for:', message);
-        return getFallbackResponse(message);
+        console.error('Chatbot error:', error);
+        return 'Sorry, I\'m having trouble right now. Please try again.';
     }
 }
 

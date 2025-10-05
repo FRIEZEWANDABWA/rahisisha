@@ -70,9 +70,9 @@ exports.handler = async (event, context) => {
     console.log('Calling webhook:', N8N_WEBHOOK_URL ? 'URL configured' : 'URL missing');
     console.log('Message payload:', { message: cleanMessage, user_id: user_id || 'anonymous' });
 
-    // Call n8n webhook (simple version)
+    // Call n8n webhook (optimized for speed)
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
 
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: 'POST',
