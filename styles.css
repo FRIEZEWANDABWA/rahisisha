@@ -217,6 +217,33 @@ section.visible {
     }
 }
 
+/* Mobile responsive chatbot */
+@media (max-width: 768px) {
+    .chatbot {
+        width: calc(100vw - 2rem) !important;
+        height: 70vh !important;
+        bottom: 80px !important;
+        right: 1rem !important;
+        left: 1rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .chatbot-trigger {
+        bottom: 1rem !important;
+        right: 1rem !important;
+        width: 56px !important;
+        height: 56px !important;
+    }
+    
+    .chatbot-messages {
+        font-size: 14px !important;
+    }
+    
+    .chatbot-input {
+        font-size: 16px !important;
+    }
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--primary-color);
