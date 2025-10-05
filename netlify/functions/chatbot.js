@@ -94,6 +94,24 @@ exports.handler = async (event, context) => {
     }
 
     const data = await response.json();
+    console.log('N8N Response:', JSON.stringify(data, null, 2));
+    
+    // Handle different N8N response formats
+    let botResponse = 'I\'m here to help! What can I do for you?';
+    
+    if (data) {
+      // Try different possible response fields
+      botResponse = data.response || 
+                   data.reply || 
+                   data.message || 
+                   data.text || 
+                   data.output ||
+                   (data.body && data.body.response) ||
+                   (data.body && data.body.message) ||
+                   (typeof data === 'string' ? data : botResponse);
+    }
+    
+    console.log('Final bot response:', botResponse);
     
     return {
       statusCode: 200,
@@ -105,7 +123,7 @@ exports.handler = async (event, context) => {
         'Cache-Control': 'no-cache'
       },
       body: JSON.stringify({
-        response: data.reply || data.response || data.message || 'I\'m here to help! What can I do for you?',
+        response: botResponse,
         timestamp: new Date().toISOString()
       })
     };
