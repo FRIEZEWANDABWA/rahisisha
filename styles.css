@@ -1748,23 +1748,23 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 }
 
 .chatbot-trigger {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 60px;
-    height: 60px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
-    z-index: 1000;
-    transition: all 0.3s ease;
+    position: fixed !important;
+    bottom: 1.5rem !important;
+    right: 1.5rem !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: var(--accent-color) !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3) !important;
+    z-index: 9999 !important;
+    transition: all 0.3s ease !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    visibility: visible;
-    animation: pulse 2s infinite;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: pulse 2s infinite !important;
 }
 
 .trigger-icon {

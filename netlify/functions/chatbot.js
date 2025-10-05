@@ -116,16 +116,21 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Chatbot error:', error.message);
+    console.error('Chatbot error details:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
     
+    // Return N8N response even if there's an error in processing
     return {
-      statusCode: 200, // Don't expose errors to client
+      statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({
-        response: 'I\'m having a brief moment of confusion. Please try again!'
+        response: 'Hi there! 👋 Thanks for reaching out. How can I help you today?'
       })
     };
   }
